@@ -2,6 +2,9 @@
 __pycache__/
 *.py[cod]
 
+#secret keys
+/museum/museum/secret.txt
+
 # C extensions
 *.so
 
