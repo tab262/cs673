@@ -12,6 +12,8 @@ class Museum(models.Model):
     def __unicode__(self):
         return self.name
 
+
+
 class Art(models.Model):
     museum = models.ForeignKey(Museum)
     title = models.CharField(max_length=100,default="untitled")
