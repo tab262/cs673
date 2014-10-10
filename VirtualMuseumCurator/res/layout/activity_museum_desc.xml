@@ -1,0 +1,105 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:id="@+id/home_relative_layout">
+<LinearLayout
+    android:id="@+id/home_linearlayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:context="com.example.museumcurator.MuseumDescActivity">
+
+    <ImageView 
+        android:id="@+id/Museum_Image"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"  
+        android:contentDescription="@string/Museum_Image"
+        android:background="@drawable/museum"
+    />
+
+    <TextView
+        android:id="@+id/museum_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/Museum_Name"
+        android:gravity="center"
+        android:textSize="48sp"
+        android:background="#DADAE7"
+       
+         />
+    
+    <View style="@style/Divider"/>
+    
+    <TextView 
+        android:id="@+id/museum_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="fill_vertical"
+        android:text="@string/Museum_Description"
+        android:padding="20dp"
+        android:background="#DADAE7"
+     />
+     
+     <View style="@style/Divider"/>
+     
+      <LinearLayout 
+	    android:id="@+id/home_linearlayouthours"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal"
+	    
+	    tools:context="com.example.museumcurator.MuseumDescActivity">
+	    
+        <TextView 
+        android:id="@+id/museum_hours_hardcode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/museum_hours_hardcode"
+        android:textStyle="bold"
+        android:textSize="18sp"
+             
+          />  
+          
+        <TextView
+        android:id="@+id/hours"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        
+       
+         />
+        
+     </LinearLayout>
+     <View style="@style/Divider"/>
+     <LinearLayout 
+    android:id="@+id/home_linearlayoutlocation"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    tools:context="com.example.museumcurator.MuseumDescActivity"> 
+    
+       <TextView 
+        android:id="@+id/museum_location_hardcode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/museum_location_hardcode"
+        android:textSize="18sp"
+        android:textStyle="bold"      
+          />
+        <TextView
+        android:id="@+id/museum_location"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" 
+         /> 
+      </LinearLayout>
+        
+         
+   <View style="@style/Divider"/>
+
+ </LinearLayout>
+
+
+</ScrollView>
