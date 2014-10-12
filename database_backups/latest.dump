@@ -1,0 +1,12 @@
+--2014-10-10 23:39:55--  https://s3.amazonaws.com/hkpgbackups/app30538484@heroku.com/b001.dump?AWSAccessKeyId=AKIAJSCBEZJRDOTGNGZQ&Expires=1412999393&Signature=SClJAfm4TxSBVpxmvK11LALFhHY%3D
+Resolving s3.amazonaws.com (s3.amazonaws.com)... 176.32.102.66
+Connecting to s3.amazonaws.com (s3.amazonaws.com)|176.32.102.66|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 53381 (52K) [binary/octet-stream]
+Saving to: ‘b001.dump?AWSAccessKeyId=AKIAJSCBEZJRDOTGNGZQ&Expires=1412999393&Signature=SClJAfm4TxSBVpxmvK11LALFhHY%3D’
+
+     0K .......... .......... .......... .......... .......... 95%  678K 0s
+    50K ..                                                    100% 4.70M=0.07s
+
+2014-10-10 23:39:55 (703 KB/s) - ‘b001.dump?AWSAccessKeyId=AKIAJSCBEZJRDOTGNGZQ&Expires=1412999393&Signature=SClJAfm4TxSBVpxmvK11LALFhHY%3D’ saved [53381/53381]
+

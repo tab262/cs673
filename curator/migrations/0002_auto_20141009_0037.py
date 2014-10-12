@@ -11,15 +11,14 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.AddField(
-            model_name='art',
-            name='title',
-            field=models.CharField(default=b'untitled', max_length=100),
-            preserve_default=True,
+        migrations.AlterField(
+            model_name='museum',
+            name='latitude',
+            field=models.DecimalField(max_digits=12, decimal_places=8),
         ),
         migrations.AlterField(
             model_name='museum',
-            name='name',
-            field=models.CharField(default=b'Test Museum', max_length=200),
+            name='longitude',
+            field=models.DecimalField(max_digits=12, decimal_places=8),
         ),
     ]

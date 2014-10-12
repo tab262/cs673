@@ -17,7 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = open('secret.txt','r').read().replace("\n",'') 
+SECRET_KEY = ''
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -36,8 +36,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'curator',
     'rest_framework',
+    'curator'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -57,13 +57,38 @@ WSGI_APPLICATION = 'museum.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
+#
 
-# Database config
 DATABASES = {
-  'default': {
-    'ENGINE': 'django.db.backends.postgresql_psycopg2',
-  }
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        #'NAME': 'd1akgelr8k8uu3',
+        #'USER': 'ljoyuhxsnpypcs',
+        #'PASSWORD': dbpw,
+        #'HOST': 'ec2-54-204-38-16.compute-1.amazonaws.com',
+        #'PORT': '5432',
+    }
 }
+
+if ('gaddis' in BASE_DIR) or ("ashley" in BASE_DIR):
+    #print "working locally"
+    dbpw = open('s.txt','r').read().split("\n")[0]
+    db = open('db.txt','r').read().split("\n")
+    DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': '',
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '5432',
+        }
+    }
+else:
+    print "Working on heroku"
+    import dj_database_url
+    DATABASES['default'] =  dj_database_url.config()
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
@@ -84,9 +109,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# Parse database configuration from $DATABASE_URL
-import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -103,3 +125,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
+
