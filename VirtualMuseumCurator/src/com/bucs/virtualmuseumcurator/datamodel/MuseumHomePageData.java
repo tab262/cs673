@@ -12,6 +12,21 @@ public class MuseumHomePageData {
 	private String city;
 	private String state;
 	private String zipcode;
+	private String VisitorsInfo;
+	private String Ticketprices;
+	
+	public String getVisitorsInfo() {
+		return VisitorsInfo;
+	}
+	public void setVisitorsInfo(String visitorsInfo) {
+		VisitorsInfo = visitorsInfo;
+	}
+	public String getTicketprices() {
+		return Ticketprices;
+	}
+	public void setTicketprices(String ticketprices) {
+		Ticketprices = ticketprices;
+	}
 	public String getZipcode() {
 		return zipcode;
 	}

@@ -6,21 +6,22 @@
     <string name="action_settings">Settings</string>
     <string name="Museum_Image">Museum Image </string>
     <string name="Museum_Name">The Bowes Museum</string>
-    <string name="Museum_Description">The Bowes Museum has a nationally renowned art collection and is situated in the town of Barnard Castle, Teesdale, County Durham, England.
-The museum contains paintings by El Greco, Francisco Goya, Canaletto, Jean-Honoré Fragonard and François Boucher, together with a sizable collection of decorative art, ceramics, textiles, tapestries, clocks and costumes, as well as older items from local history. The early works of French glassmaker Émile Gallé were commissioned by Joséphine, wife of the founder John Bowes. A great attraction is the 18th century Silver Swan automaton, which periodically preens itself, looks round and appears to catch and swallow a fish</string>
+    <string name="Museum_Description">The Portland Museum of Art is an art museum in Portland, Maine. Founded as the Portland Society of Art in 1882, it is located in the downtown area known as The Arts District, and is the largest and oldest public art institution in the U.S. state of Maine.</string>
     <string name="request">request event triggered</string>
-     <string name="museum_hours_hardcode">Hours:</string>
-     <string name="museum_location_hardcode">Location:</string>
-    
+    <string name="museum_hours_hardcode">Hours:</string>
+    <string name="museum_location_hardcode">Location:</string>
+
     <!-- Order is important here: -->
     <string-array name="home_page_pictures">
         <item>@drawable/tour</item>
         <item>@drawable/upcoming</item>
         <item>@drawable/spotlight</item>
-        <item>@drawable/upcoming</item>
-        <item>@drawable/upcoming</item>
-        <item>@drawable/upcoming</item>
+        <item>@drawable/collection</item>
+        <item>@drawable/events</item>
+        <item>@drawable/map</item>
+        <item>@drawable/registration</item>
     </string-array>
- 
- 
+
+    <string name="title_activity_museum_location">MuseumLocation</string>
+
 </resources>

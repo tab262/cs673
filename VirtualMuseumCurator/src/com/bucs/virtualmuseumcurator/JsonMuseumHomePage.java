@@ -44,8 +44,12 @@ public class JsonMuseumHomePage {
     		MuseumHomePageData frontpage=new MuseumHomePageData();
 			JSONObject jObj = new JSONObject(this.JsonString);
 			frontpage.setMuseumName(getString("name",jObj));
-			frontpage.setLocation(getString("location",jObj));
-			frontpage.setHour(getString("hours",jObj));
+			frontpage.setStreetAdress(getString("streetAddress",jObj));
+			frontpage.setCity(getString("city",jObj));
+			frontpage.setZipcode(getString("zipCode",jObj));
+			frontpage.setState(getString("state",jObj));
+			frontpage.setHour_M(getString("openingHours_M",jObj));
+			frontpage.setDescription(getString("description",jObj));
 			return frontpage;
 			
 			

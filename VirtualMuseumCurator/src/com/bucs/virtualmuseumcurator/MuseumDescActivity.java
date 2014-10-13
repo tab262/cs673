@@ -2,6 +2,7 @@ package com.bucs.virtualmuseumcurator;
 
 
 
+import android.app.Activity;
 import android.app.FragmentManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -22,6 +23,13 @@ public class MuseumDescActivity extends ActionBarActivity {
 	private TextView TextName;
 	private TextView TextHour;
 	private TextView TextLocation;
+	private TextView TextDescription;
+	private String Address;
+	private String Phone;
+	private float lat;
+	private float lng;
+	private Activity context;
+	private String title;
 	
 	
 	private class PerformMuseumSearch extends AsyncTask<String, Void, MuseumHomePageData> {
@@ -48,8 +56,15 @@ public class MuseumDescActivity extends ActionBarActivity {
 		      public void run() {
 		    	  
 		    	  TextName.setText(result.getMuseumName());
-		    	  TextLocation.setText(result.getStreetAdress()+ result.getCity()+"-"+result.getZipcode());
+		    	  TextLocation.setText(result.getStreetAdress()+","+ result.getCity()+"-"+result.getZipcode());
 		          TextHour.setText(result.getHour_M());
+		          TextDescription.setText(result.getDescription());
+		          lat=(float) 12.952462;
+		          lng=(float)77.586342;
+		          Address=(String) TextLocation.getText();
+		          Phone= "12345678";
+		          title="I am here";
+		          
 		    	  
 		          		
 		      }
@@ -67,14 +82,15 @@ public class MuseumDescActivity extends ActionBarActivity {
         TextName=(TextView)findViewById(R.id.museum_name);
         TextLocation=(TextView)findViewById(R.id.museum_location);
         TextHour=(TextView)findViewById(R.id.hours);
+        TextDescription=(TextView)findViewById(R.id.museum_description);
         PerformMuseumSearch task= new PerformMuseumSearch(); 
         task.execute(new String[] { "http://edocent.herokuapp.com/curator/1/"});
 	
 	
-        
+        this.context=this;
         FragmentManager fm= getFragmentManager();
         android.app.FragmentTransaction ft=fm.beginTransaction();
-        HomePageFragment frag=new HomePageFragment();
+        HomePageFragment frag=new HomePageFragment(Address,lat,lng,Phone,title,context);
         ft.add(R.id.home_linearlayout, frag);
         ft.commit();
         
