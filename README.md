@@ -1,3 +1,1 @@
-Casey O'Rourke
-Nisreen Dahod
-Kritika Balasubramanian
+This branch is serving as a scratchpad for sharing ideas
