@@ -59,17 +59,6 @@ WSGI_APPLICATION = 'museum.wsgi.application'
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 #
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        #'NAME': 'd1akgelr8k8uu3',
-        #'USER': 'ljoyuhxsnpypcs',
-        #'PASSWORD': dbpw,
-        #'HOST': 'ec2-54-204-38-16.compute-1.amazonaws.com',
-        #'PORT': '5432',
-    }
-}
-
 if ('gaddis' in BASE_DIR) or ("ashley" in BASE_DIR):
     #print "working locally"
     dbpw = open('s.txt','r').read().split("\n")[0]
