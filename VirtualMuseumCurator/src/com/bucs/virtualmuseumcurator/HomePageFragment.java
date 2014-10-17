@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ListFragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -52,13 +53,14 @@ public class HomePageFragment  extends ListFragment{
     	
     	switch(position){
     	  
-    	case 6:
+    	case 5:
     		Intent intent =new Intent(this.context,MuseumLocation.class);
     		intent.putExtra("Address", this.Address);
     		intent.putExtra("phone", this.phone);
     		intent.putExtra("title", this.title);
     		intent.putExtra("lat", this.lat);
     		intent.putExtra("lng", this.lng);
+    		Log.d("Before start activity",this.Address+this.title+this.phone+this.lat +this.lng);
     		startActivity(intent);
     		
     		default:

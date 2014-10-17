@@ -1,5 +1,8 @@
 package com.bucs.virtualmuseumcurator;
 
+import java.util.Locale;
+
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
@@ -7,7 +10,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,10 +24,10 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-public class MuseumLocation extends ActionBarActivity implements LocationListener {
+public class MuseumLocation extends FragmentActivity implements LocationListener {
 	
 	
-	private GoogleMap map;
+	private GoogleMap map=null;
 	private  LatLng musuemLocation;
 	private  String phoneNumber;
 	private  String address;
@@ -33,34 +36,48 @@ public class MuseumLocation extends ActionBarActivity implements LocationListene
 	private float currlng;
 	
 	private TextView Direction;
+	
+	
+
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_museum_location);
-		
+		Log.d("at MuseumLocation", "MuseumLocation");
 		Intent intent=getIntent();	
+		float lat=0;
+		float lng=0;
 		if(intent!=null){
-			float lat= intent.getFloatExtra("Lat",(float) 0.002323);
-			float lng=intent.getFloatExtra("lng", (float)0.002323);
+			 lat= intent.getFloatExtra("Lat",(float)42.339151000000001);
+			 lng=intent.getFloatExtra("lng", (float)-71.093853099999990);
 			this.musuemLocation=new LatLng(lat,lng);
 			this.phoneNumber=intent.getStringExtra("phone");
 			this.address=intent.getStringExtra("Address");
 		}
+		Log.d("before Direction",lat+","+lng);
 		
-		
-		Direction=(TextView)findViewById(R.id.museum_directions);
+		//Direction=(TextView)findViewById(R.id.museum_directions);
 		
 		
 		locationManager=(LocationManager)getSystemService(Context.LOCATION_SERVICE);
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
 		
+		Log.d(" before museum_map", " before museum_map");
 		
-		map =((MapFragment) getFragmentManager().findFragmentById(R.id.museum_map)).getMap();
+		MapFragment fragment = ( MapFragment) getFragmentManager().findFragmentById(R.id.museum_map);
+		map = fragment.getMap();
+		Log.d("after museum_map", "after museum_map");
 		map.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
 		map.addMarker(new MarkerOptions().position(musuemLocation).title("I am here!"));
 	    CameraUpdate update= CameraUpdateFactory.newLatLngZoom(musuemLocation,16);
 	    map.animateCamera(update);
+	    Log.d("after museum_map", "after museum_map");
+	    
+	    Direction=(TextView) findViewById(R.id.text_directions);
+
+	    
 	}
 
 	@Override
@@ -113,9 +130,18 @@ public class MuseumLocation extends ActionBarActivity implements LocationListene
 	}
 	
 	public void onClickDirection(View v){
-		
-		//Intent intent =new Intent(android.content.Intent.ACTION_VIEW,
-				//Uri.parse("http://maps.google.com/maps?saddr="+this.cu));
+		String uri = String.format(Locale.ENGLISH, "http://maps.google.com/maps?saddr=%f,%f(%s)&daddr=%f,%f (%s)", 42.341516, -71.098307, "Home Sweet Home", 42.339151000000001, -71.093853099999990, "Where the party is at");
+		Intent intent =new Intent(android.content.Intent.ACTION_VIEW,Uri.parse(uri));
+		intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+		startActivity(intent);
 		
 	}
+	
+	
+	public void onClickContact(View v){
+		Intent intent=new Intent();
+		intent.setComponent(new ComponentName("com.android.contacts", "com.android.contacts.DialtactsContactsEntryActivity"));
+		startActivity(intent);
+	}
+	
 }

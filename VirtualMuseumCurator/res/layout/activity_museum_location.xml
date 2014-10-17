@@ -1,4 +1,4 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,23 +7,76 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.bucs.virtualmuseumcurator.MuseumLocation" >
+   
+   <LinearLayout
+    android:id="@+id/direction_linearlayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    tools:context="com.example.museumcurator.MuseumLocation">
+		    
+    <ImageView
+       android:id="@+id/image_directions" 
+       android:background="@drawable/directions"
+       android:layout_width="20dp"
+       android:layout_height="20dp" 
+       android:layout_margin="10dp"
+       android:onClick="onClickDirection"
+       />
+    
 
     <TextView
-        android:id="@+id/header"
-        android:layout_width="wrap_content"
+        android:id="@+id/text_directions"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:gravity="center"
+        android:text="Get Directions" 
+        android:clickable="true"
+        android:onClick="onClickDirection"/>
+    
+   </LinearLayout>
+   
+   
+   
+   <LinearLayout
+    android:id="@+id/contact_linearlayout"
+    android:layout_below="@+id/direction_linearlayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    tools:context="com.example.museumcurator.MuseumLocation">
+		    
+    <ImageView
+       android:id="@+id/image_contact" 
+       android:layout_width="20dp"
+       android:layout_height="20dp" 
+       android:layout_margin="10dp"
+       android:onClick="onClickDirection"
+       android:background="@drawable/contact"
+       />
+    
+
+    <TextView
+        android:id="@+id/text_contact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Make a Call" 
+        android:clickable="true"
+        android:onClick="onClickContact"/>
+    
+   </LinearLayout>
+   
     
     <fragment 
         android:id="@+id/museum_map"
-        android:name="com.google.android.gms.maps.MapFragment"
+        class="com.google.android.gms.maps.MapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/header"
-        />
-    <TextView 
-        android:id="@+id/museum_directions"
-        android:layout_below="@+id/museum_map"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_below="@+id/contact_linearlayout"
+        android:name="com.google.android.gms.maps.MapFragment"
+        
+    />
+   
+    
 </RelativeLayout>

@@ -59,11 +59,11 @@ public class MuseumDescActivity extends ActionBarActivity {
 		    	  TextLocation.setText(result.getStreetAdress()+","+ result.getCity()+"-"+result.getZipcode());
 		          TextHour.setText(result.getHour_M());
 		          TextDescription.setText(result.getDescription());
-		          lat=(float) 12.952462;
-		          lng=(float)77.586342;
+		          lat=(float) 42.339151000000001;
+		          lng=(float)-71.093853099999990;
 		          Address=(String) TextLocation.getText();
-		          Phone= "12345678";
-		          title="I am here";
+		          Phone= "1234567811111";
+		          title="I am here Thread";
 		          
 		    	  
 		          		
@@ -85,12 +85,19 @@ public class MuseumDescActivity extends ActionBarActivity {
         TextDescription=(TextView)findViewById(R.id.museum_description);
         PerformMuseumSearch task= new PerformMuseumSearch(); 
         task.execute(new String[] { "http://edocent.herokuapp.com/curator/1/"});
+        
+        lat=(float) 42.339151000000001;
+        lng=(float)-71.093853099999990;
+        //Address=(String) TextLocation.getText();
+        Address="143 Park Dr";
+        Phone= "12345678000000";
+        title="I am here on create";
 	
 	
         this.context=this;
         FragmentManager fm= getFragmentManager();
         android.app.FragmentTransaction ft=fm.beginTransaction();
-        HomePageFragment frag=new HomePageFragment(Address,lat,lng,Phone,title,context);
+        HomePageFragment frag=new HomePageFragment(Address,lat,lng,Phone,title,this.context);
         ft.add(R.id.home_linearlayout, frag);
         ft.commit();
         
