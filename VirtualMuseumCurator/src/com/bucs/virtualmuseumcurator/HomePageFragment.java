@@ -36,7 +36,7 @@ public class HomePageFragment  extends ListFragment{
 	public void onActivityCreated(Bundle saveInstanceState)
 	{
 		super.onActivityCreated(saveInstanceState);
-		String[] values = new String[] { "Tour", "Upcoming Events", "Spotlight of the week",
+		String[] values = new String[] { "information","Tour", "Upcoming Events", "Spotlight of the week",
 		        "Collection","Events","Maps","Register for notification" };
 		    /*ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
 		        android.R.layout.simple_list_item_1, values);*/

@@ -13,6 +13,7 @@
 
     <!-- Order is important here: -->
     <string-array name="home_page_pictures">
+        <item>@drawable/information</item>
         <item>@drawable/tour</item>
         <item>@drawable/upcoming</item>
         <item>@drawable/spotlight</item>
