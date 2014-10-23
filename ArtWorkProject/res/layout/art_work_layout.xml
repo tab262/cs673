@@ -1,0 +1,195 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:id="@+id/art_linearlayout"
+    tools:context="com.bucs.virtualmuseumcurator.ArtWorkActivity">
+		    
+    	
+        <ImageView
+        	android:id="@+id/Art_Image"
+        	android:layout_width="200dp"
+        	android:layout_height="200dp"  
+        	android:layout_gravity="center"
+        	android:contentDescription="@string/Art_Content_Description"
+        	android:src="@drawable/image1" />
+        
+        <LinearLayout 
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:orientation="horizontal"
+    		android:id="@+id/art_linearlayout1"
+    		tools:context="com.bucs.virtualmuseumcurator.ArtWorkActivity">
+
+	        <TextView
+	            android:id="@+id/art_name1"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:gravity="left"
+	            android:text="@string/Art_Work_Name1"
+	            android:textSize="15sp"
+	            android:textStyle="bold" />
+	        
+	        <TextView
+	            android:id="@+id/art_name2"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="@string/Art_Work_Name2"
+	            android:textSize="15sp" />
+        
+        </LinearLayout>
+        
+        <LinearLayout 
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:orientation="horizontal"
+    		android:id="@+id/art_linearlayout2"
+    		tools:context="com.bucs.virtualmuseumcurator.ArtWorkActivity">
+
+	        <TextView
+	            android:id="@+id/artist_name1"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:gravity="left"
+	            android:text="@string/Artist_Name1"
+	            android:textSize="15sp"
+	            android:textStyle="bold" />
+	        
+	        <TextView
+	            android:id="@+id/artist_name2"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="@string/Artist_Name2"
+	            android:textSize="15sp" />
+        
+        </LinearLayout>
+        
+        <LinearLayout 
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:orientation="horizontal"
+    		android:id="@+id/art_linearlayout3"
+    		tools:context="com.bucs.virtualmuseumcurator.ArtWorkActivity">
+
+	        <TextView
+	            android:id="@+id/museum_name1"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:gravity="left"
+	            android:text="@string/Museum_Name1"
+	            android:textSize="15sp"
+	            android:textStyle="bold" />
+	        
+	        <TextView
+	            android:id="@+id/museum_name2"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="@string/Museum_Name2"
+	            android:textSize="15sp" />
+        
+        </LinearLayout>
+        
+                <LinearLayout 
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:orientation="horizontal"
+    		android:id="@+id/art_linearlayout4"
+    		tools:context="com.bucs.virtualmuseumcurator.ArtWorkActivity">
+
+	        <TextView
+	            android:id="@+id/art_type1"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:gravity="left"
+	            android:text="@string/Art_Type1"
+	            android:textSize="15sp"
+	            android:textStyle="bold" />
+	        
+	        <TextView
+	            android:id="@+id/art_type2"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="@string/Art_Type2"
+	            android:textSize="15sp" />
+        
+        </LinearLayout>
+        
+        <LinearLayout 
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:orientation="horizontal"
+    		android:id="@+id/art_linearlayout5"
+    		tools:context="com.bucs.virtualmuseumcurator.ArtWorkActivity">
+
+	        <TextView
+	            android:id="@+id/audio_file1"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:gravity="left"
+	            android:text="@string/Audio_File1"
+	            android:textSize="15sp"
+	            android:textStyle="bold" />
+	        
+	        <TextView
+	            android:id="@+id/audio_file2"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="@string/Audio_File2"
+	            android:textSize="15sp" />
+        
+        </LinearLayout>
+        
+        <LinearLayout 
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:orientation="horizontal"
+    		android:id="@+id/art_linearlayout6"
+    		tools:context="com.bucs.virtualmuseumcurator.ArtWorkActivity">
+
+	        <TextView
+	            android:id="@+id/creation_date1"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:gravity="left"
+	            android:text="@string/Creation_Date1"
+	            android:textSize="15sp"
+	            android:textStyle="bold" />
+	        
+	        <TextView
+	            android:id="@+id/creation_date2"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="@string/Creation_Date2"
+	            android:textSize="15sp" />
+        
+        </LinearLayout>
+        
+        <LinearLayout 
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:orientation="horizontal"
+    		android:id="@+id/art_linearlayout7"
+	   		tools:context="com.bucs.virtualmuseumcurator.ArtWorkActivity">
+
+	        <TextView
+	            android:id="@+id/art_desc1"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:gravity="left"
+	            android:text="@string/history1"
+	            android:textSize="15sp"
+	            android:textStyle="bold" />
+	        
+	        <TextView
+	            android:id="@+id/art_desc2"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="@string/history2"
+	            android:textSize="15sp" />
+        
+        </LinearLayout>
+        
+
+            
+	</LinearLayout>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ArtWorkPage</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="Art_Work_Name1">Art Work Name: </string>
+    <string name="Art_Content_Description">Art Content Description: Art Description</string>
+    <string name="Artist_Name1">Artist Name: </string>
+    <string name="Museum_Name1">Museum Name:</string>
+    <string name="Art_Type1">Art Type:</string>
+    <string name="Creation_Date1">Creation Date:</string>
+    <string name="history1">Art History: </string>
+    <string name="Audio_File1">Audio File:</string>
+    <string name="Art_Work_Name2">&quot;   My Art !!!&quot;</string>
+    <string name="Artist_Name2">&quot;   Michael Fishman&quot;</string>
+    <string name="Museum_Name2">&quot;   Museum of Fine Arts&quot;</string>
+    <string name="Art_Type2">&quot;   Nature&quot;</string>
+    <string name="Audio_File2">&quot;   No such file available&quot;</string>
+    <string name="Creation_Date2">&quot;   Long before Christ&quot;</string>
+    <string name="history2">&quot;   This art has loads and loads of history !!!!&quot;</string>
+
+</resources>
