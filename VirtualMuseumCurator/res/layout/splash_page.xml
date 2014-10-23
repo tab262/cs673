@@ -12,12 +12,8 @@
   	<LinearLayout
         android:layout_width="fill_parent"
         android:orientation="vertical" 
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:paddingTop="50dp"
-        android:paddingLeft="100dp"
-        android:paddingRight="100dp"
-        android:layout_margin="10dp"
         android:weightSum="50">
  <!--  Form Controls -->
  
@@ -26,10 +22,10 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:text="@string/welcome"
-    android:gravity="center_horizontal"
+    android:gravity="center"
     android:layout_margin="10dp"
-    android:textSize="24pt"
-    android:paddingBottom ="35dp"
+    android:textSize="15sp"
+    android:textStyle="bold"
     android:textColor="#ffffff"/>
    
  <TextView
@@ -37,9 +33,10 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:text="@string/state_name"
-    android:gravity="center_horizontal"
+    android:gravity="center"
     android:layout_margin="10dp"
-    android:textSize="9pt"
+    android:textSize="15sp"
+    android:textStyle="bold"
     android:textColor="#ffffff"/>
 
 
@@ -47,17 +44,26 @@
         android:id="@+id/state_spinner"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+         android:textSize="15sp"
+         android:textStyle="bold"
+         
         android:prompt="@string/spinner_prompt"/>
   <Spinner
         android:id="@+id/city_spinner"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+         android:textSize="15sp"
+        android:textStyle="bold"
+         
         android:prompt="@string/spinner_prompt"/>
   
    <Spinner
         android:id="@+id/museum_spinner"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+         android:textSize="15sp"
+   		 android:textStyle="bold"
+   		 
         android:prompt="@string/spinner_prompt"/>
  
  
@@ -68,18 +74,19 @@
     android:gravity="center_horizontal"
     android:text="@string/museum_prompt"
     android:layout_margin="10dp"
-    android:textSize="9pt"
+    android:textSize="15sp"
     android:textColor="#ffffff"/>
 
 
 <Button
     android:id="@+id/ButtonSendFeedback"
     android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
     android:gravity="center_horizontal"
     android:text="@string/submitbutton"
     android:onClick="onClick"
     android:layout_margin="40dp"
-    android:layout_width="fill_parent"
+    android:textSize="15sp"
     android:textColor="#ffffff" />
 
     

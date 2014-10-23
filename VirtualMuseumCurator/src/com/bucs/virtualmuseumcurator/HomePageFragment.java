@@ -53,7 +53,7 @@ public class HomePageFragment  extends ListFragment{
     	
     	switch(position){
     	  
-    	case 5:
+    	case 6:
     		Intent intent =new Intent(this.context,MuseumLocation.class);
     		intent.putExtra("Address", this.Address);
     		intent.putExtra("phone", this.phone);
