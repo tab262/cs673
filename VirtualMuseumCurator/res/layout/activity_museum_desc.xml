@@ -30,7 +30,7 @@
         android:text="@string/Museum_Name"
         android:gravity="center"
         android:textSize="15sp"
-        android:background="#C4C4D0"
+        android:background="#3399FF"
         android:textStyle="bold"
         
        

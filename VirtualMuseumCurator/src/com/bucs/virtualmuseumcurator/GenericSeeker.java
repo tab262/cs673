@@ -1,5 +1,7 @@
 package com.bucs.virtualmuseumcurator;
 
+import com.bucs.virtualmuseumcurator.museumhome.MuseumHttpClient;
+
 /**
  * @author chethan
  *

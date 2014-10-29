@@ -1486,12 +1486,13 @@ containing a value of this type.
         public static final int url=0x7f020088;
     }
     public static final class id {
-        public static final int ButtonSendFeedback=0x7f080071;
-        public static final int Museum_Image=0x7f080050;
-        public static final int ScrollView01=0x7f08006a;
-        public static final int TextViewTitle0=0x7f08006b;
-        public static final int TextViewTitle1=0x7f08006c;
+        public static final int ButtonSendFeedback=0x7f080074;
+        public static final int Museum_Image=0x7f080052;
+        public static final int ScrollView01=0x7f08006c;
+        public static final int TextViewTitle0=0x7f08006d;
+        public static final int TextViewTitle1=0x7f08006e;
         public static final int TextViewTitle2=0x7f080070;
+        public static final int TextViewTitle3=0x7f080072;
         public static final int action_bar=0x7f08002e;
         public static final int action_bar_activity_content=0x7f080027;
         public static final int action_bar_container=0x7f08002d;
@@ -1503,66 +1504,67 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f080028;
         public static final int action_menu_presenter=0x7f080029;
         public static final int action_mode_close_button=0x7f080036;
-        public static final int action_settings=0x7f080072;
+        public static final int action_settings=0x7f080075;
         public static final int activity_chooser_view_content=0x7f080037;
         public static final int always=0x7f08001e;
         public static final int art_image=0x7f080063;
-        public static final int art_name=0x7f080065;
         public static final int beginning=0x7f080023;
         public static final int book_now=0x7f080010;
         public static final int buyButton=0x7f08000a;
         public static final int buy_now=0x7f08000f;
         public static final int buy_with_google=0x7f08000e;
         public static final int checkbox=0x7f08003f;
-        public static final int city_spinner=0x7f08006e;
+        public static final int city_spinner=0x7f080071;
         public static final int classic=0x7f080011;
         public static final int collapseActionView=0x7f080020;
-        public static final int contact_linearlayout=0x7f08005d;
-        public static final int customSpinnerItemTextView=0x7f080069;
+        public static final int collection_list_view=0x7f08004f;
+        public static final int collectionview=0x7f08004e;
+        public static final int contact_linearlayout=0x7f08005f;
         public static final int default_activity_button=0x7f08003a;
-        public static final int description=0x7f080061;
+        public static final int description_art=0x7f080069;
         public static final int dialog=0x7f080021;
-        public static final int direction_linearlayout=0x7f08005a;
+        public static final int direction_linearlayout=0x7f08005c;
         public static final int disableHome=0x7f08001b;
         public static final int dropdown=0x7f080022;
-        public static final int duration_art=0x7f080066;
         public static final int edit_query=0x7f080042;
         public static final int end=0x7f080025;
+        public static final int enddate_art=0x7f080068;
         public static final int expand_activities_button=0x7f080038;
-        public static final int expandableList=0x7f080053;
+        public static final int expandableList=0x7f080055;
         public static final int expanded_menu=0x7f08003e;
-        public static final int frag_image=0x7f080068;
-        public static final int frag_text=0x7f080064;
+        public static final int frag_image=0x7f08006a;
+        public static final int frag_text=0x7f08006b;
         public static final int grayscale=0x7f080012;
         public static final int holo_dark=0x7f080005;
         public static final int holo_light=0x7f080006;
         public static final int home=0x7f080026;
         public static final int homeAsUp=0x7f080018;
-        public static final int home_linearlayout=0x7f08004f;
-        public static final int home_linearlayouthours=0x7f080054;
-        public static final int home_linearlayoutlocation=0x7f080057;
-        public static final int home_relative_layout=0x7f08004e;
-        public static final int hours=0x7f080056;
+        public static final int home_linearlayout=0x7f080051;
+        public static final int home_linearlayouthours=0x7f080056;
+        public static final int home_linearlayoutlocation=0x7f080059;
+        public static final int home_relative_layout=0x7f080050;
+        public static final int hours=0x7f080058;
         public static final int hybrid=0x7f080004;
         public static final int icon=0x7f08003c;
         public static final int ifRoom=0x7f08001d;
         public static final int image=0x7f080039;
-        public static final int image_contact=0x7f08005e;
-        public static final int image_directions=0x7f08005b;
-        public static final int laptop=0x7f080062;
+        public static final int image_contact=0x7f080060;
+        public static final int image_directions=0x7f08005d;
+        public static final int linearcollection_text=0x7f080064;
+        public static final int lineardate_text=0x7f080066;
         public static final int listMode=0x7f080014;
         public static final int list_item=0x7f08003b;
-        public static final int location_art=0x7f080067;
         public static final int match_parent=0x7f08000c;
         public static final int middle=0x7f080024;
         public static final int monochrome=0x7f080013;
-        public static final int museum_description=0x7f080052;
-        public static final int museum_hours_hardcode=0x7f080055;
-        public static final int museum_location=0x7f080059;
-        public static final int museum_location_hardcode=0x7f080058;
-        public static final int museum_map=0x7f080060;
-        public static final int museum_name=0x7f080051;
-        public static final int museum_spinner=0x7f08006f;
+        public static final int museum_description=0x7f080054;
+        public static final int museum_hours_hardcode=0x7f080057;
+        public static final int museum_location=0x7f08005b;
+        public static final int museum_location_hardcode=0x7f08005a;
+        public static final int museum_map=0x7f080062;
+        public static final int museum_name=0x7f080053;
+        public static final int museum_spinner=0x7f080073;
+        public static final int name_art=0x7f080065;
         public static final int never=0x7f08001c;
         public static final int none=0x7f080000;
         public static final int normal=0x7f080001;
@@ -1588,13 +1590,14 @@ containing a value of this type.
         public static final int showHome=0x7f080017;
         public static final int showTitle=0x7f080019;
         public static final int split_action_bar=0x7f080030;
-        public static final int state_spinner=0x7f08006d;
+        public static final int startdate_art=0x7f080067;
+        public static final int state_spinner=0x7f08006f;
         public static final int strict_sandbox=0x7f080009;
         public static final int submit_area=0x7f08004b;
         public static final int tabMode=0x7f080015;
         public static final int terrain=0x7f080003;
-        public static final int text_contact=0x7f08005f;
-        public static final int text_directions=0x7f08005c;
+        public static final int text_contact=0x7f080061;
+        public static final int text_directions=0x7f08005e;
         public static final int title=0x7f08003d;
         public static final int top_action_bar=0x7f080032;
         public static final int up=0x7f080033;
@@ -1653,22 +1656,19 @@ containing a value of this type.
         public static final int abc_search_dropdown_item_icons_2line=0x7f030015;
         public static final int abc_search_view=0x7f030016;
         public static final int abc_simple_decor=0x7f030017;
-        public static final int activity_edocent_splash=0x7f030018;
+        public static final int activity_collection_page=0x7f030018;
         public static final int activity_museum_desc=0x7f030019;
         public static final int activity_museum_location=0x7f03001a;
-        public static final int childitem_museum_act=0x7f03001b;
-        public static final int group_item_museum_activity=0x7f03001c;
-        public static final int homepagefragment=0x7f03001d;
-        public static final int rowlayoutcollections=0x7f03001e;
-        public static final int rowlayouthomepage=0x7f03001f;
-        public static final int spinner_layout=0x7f030020;
-        public static final int splash_page=0x7f030021;
-        public static final int support_simple_spinner_dropdown_item=0x7f030022;
+        public static final int rowlayoutcollections=0x7f03001b;
+        public static final int rowlayouthomepage=0x7f03001c;
+        public static final int splash_page=0x7f03001d;
+        public static final int support_simple_spinner_dropdown_item=0x7f03001e;
     }
     public static final class menu {
         public static final int edocent_splash=0x7f0d0000;
-        public static final int museum_desc=0x7f0d0001;
-        public static final int museum_location=0x7f0d0002;
+        public static final int event_page=0x7f0d0001;
+        public static final int museum_desc=0x7f0d0002;
+        public static final int museum_location=0x7f0d0003;
     }
     public static final class string {
         public static final int Museum_Description=0x7f07002a;
@@ -1714,10 +1714,11 @@ containing a value of this type.
         /**  Description of a share target (both in the list of such or the default share button) in a ShareActionProvider (share UI). [CHAR LIMIT=NONE] 
          */
         public static final int abc_shareactionprovider_share_with_application=0x7f070025;
-        /**  <string name="app_name">MuseumCurator</string>  
+        /**  <string name="app_name">MuseumCurator</string> 
          */
         public static final int action_settings=0x7f070027;
         public static final int app_name=0x7f07002f;
+        public static final int city_name=0x7f070035;
         /**  Button in confirmation dialog to enable Google Play services.  Clicking it
         will direct user to application settings of Google Play services where they
         can enable it [CHAR LIMIT=40] 
@@ -1807,6 +1808,7 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f070018;
+        public static final int hello_world=0x7f070038;
         public static final int museum_hours_hardcode=0x7f07002c;
         public static final int museum_location_hardcode=0x7f07002d;
         public static final int museum_prompt=0x7f070032;
@@ -1814,7 +1816,8 @@ containing a value of this type.
         public static final int spinner_prompt=0x7f070034;
         public static final int state_name=0x7f070031;
         public static final int submitbutton=0x7f070033;
-        public static final int title_activity_edocent_splash=0x7f070035;
+        public static final int title_activity_edocent_splash=0x7f070036;
+        public static final int title_activity_event_page=0x7f070037;
         public static final int title_activity_museum_location=0x7f07002e;
         /**  Text on a placeholder buy button when Google Play services is not
          available or up-to-date 
