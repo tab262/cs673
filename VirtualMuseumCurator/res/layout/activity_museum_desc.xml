@@ -19,7 +19,6 @@
         android:id="@+id/Museum_Image"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"  
-        android:contentDescription="@string/Museum_Image"
         android:background="@drawable/museumoffinearts"
     />
 
@@ -27,7 +26,6 @@
         android:id="@+id/museum_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/Museum_Name"
         android:gravity="center"
         android:textSize="15sp"
         android:background="#3399FF"
@@ -43,7 +41,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="fill_vertical"
-        android:text="@string/Museum_Description"
+       
         android:padding="8dp"
         android:textSize="12sp"
         android:background="#C4C4D0"
@@ -68,7 +66,6 @@
         android:id="@+id/museum_hours_hardcode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/museum_hours_hardcode"
         android:textStyle="bold"
         android:textSize="12sp"
         android:padding="2dp"
@@ -98,7 +95,6 @@
         android:id="@+id/museum_location_hardcode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/museum_location_hardcode"
         android:textSize="12sp"
         android:textStyle="bold"
         android:paddingLeft="10dp"  

@@ -16,6 +16,7 @@ public class CollectionRowContent {
 	private String artstartDate;
 	private String artendDate;
 	private String artDescription;
+	private JSONArray artobj;
 	
 	
 	public CollectionRowContent(JSONObject jobj){
@@ -24,6 +25,7 @@ public class CollectionRowContent {
 			this.artDescription=jobj.getString("description");
 			this.artstartDate=jobj.getString("startDate");
 			this.artendDate=jobj.getString("endDate");
+			this.artobj=jobj.getJSONArray("art_objects");
 			
 		}
 		catch (JSONException e){

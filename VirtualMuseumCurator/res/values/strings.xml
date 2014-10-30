@@ -94,5 +94,6 @@
     <string name="title_activity_edocent_splash">EDocentSplash</string>
     <string name="title_activity_event_page">EventPageActivity</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_art_info">ArtInfoActivity</string>
 
 </resources>

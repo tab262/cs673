@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import com.bucs.virtualmuseumcurator.R;
+import com.bucs.virtualmuseumcurator.datamodel.ArtInfoDataModel;
 import com.bucs.virtualmuseumcurator.datamodel.CollectionPageData;
 import com.bucs.virtualmuseumcurator.datamodel.CollectionRowContent;
 import com.bucs.virtualmuseumcurator.museumhome.HomePageFragment;
@@ -63,11 +64,14 @@ public class CollectionPageActivity extends ActionBarActivity {
 						   		 * */
 						   		ArrayList rowvalues=new ArrayList<CollectionRowContent>();
 						   		rowvalues=CollectionRowContent.fromJSON(exhibitionArray);
+						   		ArrayList<ArtInfoDataModel> artlist= new ArrayList<ArtInfoDataModel>();
+						   		
+						   		artlist=ArtInfoDataModel.fromJSONArray(exhibitionArray);
 						   		
 						   		
 						        FragmentManager fm= getFragmentManager();
 						        android.app.FragmentTransaction ft=fm.beginTransaction();
-						        CollectionPageFragment frag=new CollectionPageFragment();
+						        CollectionPageFragment frag=new CollectionPageFragment(artlist,context);
 						        ft.add(R.id.collection_list_view, frag);
 						        Log.d("result-onPostExecute1",exhibitionArray.toString());
 						       // Log.d("result-onPostExecute2",rowvalues.get(1).getString("description"));
