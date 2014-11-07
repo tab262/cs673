@@ -1,0 +1,10 @@
+<html>
+<h1>{{museum.name}} art list </h1>
+<table>
+{% for art in museum.art_set.all %}
+<tr>
+<td>{{art.id}}</td>
+<td>{{art.title}}</td>
+{% endfor %}
+</table>
+</html>
