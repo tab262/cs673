@@ -21,10 +21,20 @@ class Museum(models.Model):
 
 
 
+class Artist(models.Model):
+    museum = models.ForeignKey(Museum)
+    title = models.CharField(max_length=100,default="untitled")
+    biography = models.TextField()
+    owner = models.ForeignKey(User, null=True, blank=True)
+
+    def __unicode__(self):
+        return self.title
+
+
 class Art(models.Model):
     museum = models.ForeignKey(Museum)
     title = models.CharField(max_length=100,default="untitled")
-    artist = models.CharField(max_length=100)
+    artist = models.ForeignKey(Artist)
     year_created = models.CharField(max_length=100)
     movement = models.CharField(max_length=100)
     description = models.TextField()
