@@ -1,11 +1,13 @@
 package com.bucs.virtualmuseumcurator.datamodel;
 
+import java.util.ArrayList;
+
 import android.graphics.Bitmap;
 
 public class MuseumHomePageData {
 
 	
-	private Bitmap Image;	
+	private String Image;	
 	private String MuseumName;
 	private String Description;
 	private String streetAdress;
@@ -14,6 +16,51 @@ public class MuseumHomePageData {
 	private String zipcode;
 	private String VisitorsInfo;
 	private String Ticketprices;
+	private String parking;
+	private String ticket_prices;
+	private String visitor_info;
+	private String membership;
+	private String website;
+	private Bitmap MuseumImageinBit;
+	
+	
+	public Bitmap getMuseumImageinBit() {
+		return MuseumImageinBit;
+	}
+	public void setMuseumImageinBit(Bitmap museumImageinBit) {
+		MuseumImageinBit = museumImageinBit;
+	}
+	public String getParking() {
+		return parking;
+	}
+	public void setParking(String parking) {
+		this.parking = parking;
+	}
+	public String getTicket_prices() {
+		return ticket_prices;
+	}
+	public void setTicket_prices(String ticket_prices) {
+		this.ticket_prices = ticket_prices;
+	}
+	public String getVisitor_info() {
+		return visitor_info;
+	}
+	public void setVisitor_info(String visitor_info) {
+		this.visitor_info = visitor_info;
+	}
+	public String getMembership() {
+		return membership;
+	}
+	public void setMembership(String membership) {
+		this.membership = membership;
+	}
+	public String getWebsite() {
+		return website;
+	}
+	public void setWebsite(String website) {
+		this.website = website;
+	}
+	private ArrayList Hours= new ArrayList();
 	
 	public String getVisitorsInfo() {
 		return VisitorsInfo;
@@ -68,8 +115,8 @@ public class MuseumHomePageData {
 	public String getLatitude() {
 		return latitude;
 	}
-	public void setLatitude(String latitude) {
-		this.latitude = latitude;
+	public void setLatitude(String f) {
+		this.latitude = f;
 	}
 	public String getLongitude() {
 		return longitude;
@@ -141,10 +188,16 @@ public class MuseumHomePageData {
 	private String HighLights;
 	
 	
-	public Bitmap getImage() {
+	public String getImage() {
 		return Image;
 	}
-	public void setImage(Bitmap image) {
+	public ArrayList getHours() {
+		return Hours;
+	}
+	public void setHours(ArrayList hours) {
+		Hours = hours;
+	}
+	public void setImage(String image) {
 		Image = image;
 	}
 	public String getMuseumName() {

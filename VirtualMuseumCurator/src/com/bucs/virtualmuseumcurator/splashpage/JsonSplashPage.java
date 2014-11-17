@@ -10,9 +10,9 @@ import com.bucs.virtualmuseumcurator.datamodel.EdocentSplashPageData;
 
 
 public class JsonSplashPage {
-	private String JsonString;
+	private JSONObject JsonString;
 
-	public JsonSplashPage(String jsonString) {
+	public JsonSplashPage(JSONObject jsonString) {
 		// TODO Auto-generated constructor stub
 		JsonString = jsonString;
 	}
@@ -36,9 +36,9 @@ public class JsonSplashPage {
     }
     
     
-    public EdocentSplashPageData JsonParse()
+    public JSONObject JsonParse()
     {
-    	EdocentSplashPageData data=new EdocentSplashPageData();
+    	/*EdocentSplashPageData data=new EdocentSplashPageData();
     	String mN;
     	String[] pK;
     	  
@@ -72,7 +72,8 @@ public class JsonSplashPage {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return data;
+		return data;*/
+    	return this.JsonString;
     	
 
     }

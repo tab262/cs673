@@ -1,9 +1,17 @@
 package com.bucs.virtualmuseumcurator.collections;
 
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
+
+import org.w3c.dom.Text;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +21,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bucs.virtualmuseumcurator.R;
-import com.bucs.virtualmuseumcurator.datamodel.ArtInfoDataModel;
+import com.bucs.virtualmuseumcurator.collections.CollectionPageAdapter.ViewHolder.ImageArtobj;
 import com.bucs.virtualmuseumcurator.datamodel.CollectionRowContent;
 
 public class CollectionPageAdapter extends ArrayAdapter<ArrayList>{
@@ -25,6 +33,12 @@ public class CollectionPageAdapter extends ArrayAdapter<ArrayList>{
 		this.context=(Activity) context;
 		this.exhibits=objects;
 	}
+	
+	
+	private ArrayList<Bitmap> Bitmapobjects=new  ArrayList<Bitmap>();
+	private int counter=0;
+
+
 
 
 
@@ -74,8 +88,60 @@ public class CollectionPageAdapter extends ArrayAdapter<ArrayList>{
 		public TextView enddate;
 		public TextView description;
 		public ImageView image;
+		public class ImageArtobj extends AsyncTask<String, Void, Bitmap> {
+
+			   @Override
+			   protected Bitmap doInBackground(String... params) {
+				 try{ Log.d("ImagebackgroundThread","ImageSearch");
+
+				      Log.d("Beforeeeeeeeeeeeeeee!!!!!!!!!!!!!!!!!!!!!!!", "###########");
+			          Bitmap bitmap = getBitmapFromURL("https://s3.amazonaws.com/edocent/museum_images/mfa.jpg");
+			          
+			          return bitmap; 
+				  
+			     
+				 }
+				 catch(Exception e)
+				 {
+					 Log.d("errorrrrrr",e.toString());
+				 }
+				return null;
+			   }
+			   
+			   @Override
+			   protected void onPostExecute(final Bitmap result) { 
+				   Log.d("got bit map in list!!!!!!!!!!", "got bit map in list");
+				   image.setImageBitmap(result);
+				   
+			   }
+
+
+
+				 public Bitmap getBitmapFromURL(String src)
+				    {
+				    	try {
+				    		Log.d("Bit!!!!!!!!!!!!!!!!!!!!!!!", src);
+							URL url = new URL(src);
+							HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+							connection.setDoInput(true);
+							connection.connect();
+							InputStream input = connection.getInputStream();
+							Bitmap myBitmap = BitmapFactory.decodeStream(input);
+							return myBitmap;
+							
+						} catch (Exception e) {
+							// TODO: handle exception
+							e.printStackTrace();
+							return null;
+						}
+				    }
+
+			      
+			}
 			
 	}
+	
+
 	
 
 	
@@ -101,12 +167,9 @@ public class CollectionPageAdapter extends ArrayAdapter<ArrayList>{
 			rowView.setTag(viewholder);
 		}
 		
-
 		
 		//fill data 
 		
-		
-		//TypedArray pictures=context.getResources().obtainTypedArray(R.array.home_page_pictures);
 		ViewHolder holder=(ViewHolder) rowView.getTag();
 		com.bucs.virtualmuseumcurator.datamodel.CollectionRowContent row=(CollectionRowContent) this.exhibits.get(position);
 		Log.d("fill data !!!!!!!!!",row.getArtName());
@@ -114,11 +177,12 @@ public class CollectionPageAdapter extends ArrayAdapter<ArrayList>{
 		holder.enddate.setText(row.getArtendDate());
 		holder.startdate.setText(row.getArtstartDate());
 		holder.description.setText(row.getArtDescription());
-		//holder.image.setImageBitmap(row.getArtImage());
 		
 		//image
-		//holder.image.setImageResource(R.drawable.upcoming);*/
-		
+		CollectionPageAdapter.ViewHolder.ImageArtobj task= holder.new ImageArtobj(); 
+        task.execute(new String[] {"https://s3.amazonaws.com/edocent/"+row.getArtlink()});
+	    //holder.image.setImageBitmap(bitmap);
+
 		return rowView;
 	}
 	

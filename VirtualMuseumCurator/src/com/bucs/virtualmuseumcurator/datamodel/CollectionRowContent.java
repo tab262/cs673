@@ -6,17 +6,35 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.graphics.Bitmap;
 import android.util.Log;
 
 public class CollectionRowContent {
 	
+	public String getArtlink() {
+		return artlink;
+	}
+
+	public void setArtlink(String artlink) {
+		this.artlink = artlink;
+	}
+
+	public Bitmap getBitmap() {
+		return bitmap;
+	}
+
+	public void setBitmap(Bitmap bitmap) {
+		this.bitmap = bitmap;
+	}
+
 	private String artName;
 	private String artDuration;
 	private String artLocation;
 	private String artstartDate;
 	private String artendDate;
 	private String artDescription;
-	private JSONArray artobj;
+	private String artlink;
+	private Bitmap bitmap;
 	
 	
 	public CollectionRowContent(JSONObject jobj){
@@ -25,7 +43,10 @@ public class CollectionRowContent {
 			this.artDescription=jobj.getString("description");
 			this.artstartDate=jobj.getString("startDate");
 			this.artendDate=jobj.getString("endDate");
-			this.artobj=jobj.getJSONArray("art_objects");
+			JSONArray jarr=jobj.getJSONArray("art_objects");
+			JSONObject jsonartobj=jarr.getJSONObject(0);
+			artlink=jsonartobj.getString("image");
+			
 			
 		}
 		catch (JSONException e){

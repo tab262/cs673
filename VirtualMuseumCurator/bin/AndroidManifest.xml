@@ -21,6 +21,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <uses-feature
         android:glEsVersion="0x00020000"
@@ -61,8 +62,16 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name="com.bucs.virtualmuseumcurator.ArtInfo.ArtInfoActivity"
+            android:name=".ArtInfo.ArtInfoActivity"
             android:label="@string/title_activity_art_info" >
+        </activity>
+        <activity
+            android:name=".codescanner.ScannerAcivity"
+            android:label="@string/title_activity_scanner_acivity" >
+        </activity>
+        <activity
+            android:name="com.bucs.virtualmuseumcurator.information.MuseumInformation"
+            android:label="@string/title_activity_museum_information" >
         </activity>
     </application>
 

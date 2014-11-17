@@ -11,9 +11,12 @@ import java.net.URL;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpStatus;
+import org.apache.http.ParseException;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -32,10 +35,11 @@ public class MuseumSplashHttpClient extends GenericSeeker{
 
  
 //To call the Server API and accept the Json and return it in a string format 
- public EdocentSplashPageData retrieve(String url)
+ public JSONObject retrieve(String url) throws ParseException, JSONException
  {
   HttpGet getRequest=new HttpGet(url);
   EdocentSplashPageData  frontpageobj=new EdocentSplashPageData();
+  JSONObject LocationJson=new JSONObject();
  
   try{
             Log.d(url, "before calling");
@@ -50,11 +54,12 @@ public class MuseumSplashHttpClient extends GenericSeeker{
    
    HttpEntity getResponseEntity=getResponse.getEntity();
    //Log.d("jsonresponse", EntityUtils.toString(getResponseEntity));
-   JsonSplashPage jsondeserialze=new JsonSplashPage(EntityUtils.toString(getResponseEntity));
-   frontpageobj=jsondeserialze.JsonParse();
+   JSONObject js=new JSONObject(EntityUtils.toString(getResponseEntity));
+   JsonSplashPage jsondeserialze=new JsonSplashPage(js);
+   LocationJson=jsondeserialze.JsonParse();
    Log.d("finishedParse","finishedParse");
    Log.d("jsonAfterParse", frontpageobj.toString());
-   return frontpageobj;
+   return LocationJson;
    
   }
   

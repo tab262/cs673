@@ -3,6 +3,10 @@ package com.bucs.virtualmuseumcurator.splashpage;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -20,10 +24,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.bucs.virtualmuseumcurator.R;
-import com.bucs.virtualmuseumcurator.R.id;
-import com.bucs.virtualmuseumcurator.R.layout;
-import com.bucs.virtualmuseumcurator.R.menu;
-import com.bucs.virtualmuseumcurator.datamodel.EdocentSplashPageData;
 import com.bucs.virtualmuseumcurator.museumhome.MuseumDescActivity;
 
 
@@ -34,25 +34,33 @@ public class EDocentSplashActivity extends ActionBarActivity implements AdapterV
 	private Spinner spinnerState,spinnerCity,spinnerMuseum;
 	private Button submit;
 	private String selectedState;
-	private String selectedCity; 
+	private String selectedCity;
+	private String selectedMuseum;
+	private int selectedStateIndex;
+	private int selectedCityIndex;
+	private int selectedMuseumIndex;
     private List<String> states;
     private List<String> city;
-    private List<String> Musuems;
+    private List<String> Museums;
     private Activity context;
+    private JSONObject LocationJson;
+    private JSONObject justcurrentcityJson;
+    private String primarykey;
+ 
    
     
     
     
     
-    private class PerformSplashpageSearch extends AsyncTask<String, Void, EdocentSplashPageData> {
+    private class PerformSplashpageSearch extends AsyncTask<String, Void, JSONObject> {
 
         @Override
-        protected EdocentSplashPageData doInBackground(String... params) {
+        protected JSONObject doInBackground(String... params) {
           try{ Log.d("backgroundThread","PerformMuseumSearch");
            String url =params[0];  
-           EdocentSplashPageData Text=httprequestsplash.retrieve(url);
-           Log.d("result", Text.toString());
-           return Text;
+           JSONObject  LocationJson=httprequestsplash.retrieve(url);
+           Log.d("result", LocationJson.toString());
+           return LocationJson;
           }
           catch(Exception e)
           {
@@ -62,20 +70,199 @@ public class EDocentSplashActivity extends ActionBarActivity implements AdapterV
         }
         
         @Override
-        protected void onPostExecute(final EdocentSplashPageData result) {         
+        protected void onPostExecute(final JSONObject result) {         
            runOnUiThread(new Runnable() {
            @Override
            public void run() {
-               
-        	   List<String> museum=new ArrayList<String>();
-        	   Musuems=result.getMusuems();
+        	   
+        	   Log.d("onPostExecute%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%", result.toString());
+        	   //justcurrentcityJson=result;
+        	   LocationJson=result;
+        			   
+          	 Log.d("I am here%%%%%%%%%%%%%%%%222222222222222222222", "I am here%%%%%%%%%%%%%%%%22222222222222222222222222");
+         	ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(context,
+         			android.R.layout.simple_spinner_item, states);
+         	
+         	dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+         	spinnerState.setAdapter(dataAdapter);
+         	
+         	spinnerState.setOnItemSelectedListener(new OnItemSelectedListener() {
+         		
+         		@Override
+         	      public void onItemSelected(AdapterView<?> arg0, View arg1,
+         	          int arg2, long arg3) {
+         	        int index = arg0.getSelectedItemPosition();
+         	        selectedState=states.get(index);
+         	        
+         	        Toast.makeText(getBaseContext(),
+         	            "You have selected item : " + states.get(index),
+         	            Toast.LENGTH_SHORT).show();	
+         	        
+         	        
+         	        selectedState=states.get(index);
+         	        selectedStateIndex=index;
+         	        city=new ArrayList();
+         	        try {
+     					JSONArray cities=LocationJson.getJSONArray(selectedState);
+     					Log.d("first@@@@@@@@@@@@@@@@@@@@@@@@@@",cities.toString());
+     					for(int i=0;i<cities.length();i++){
+     						city.add(cities.getJSONObject(i).getString("city"));
+     						Log.d("Just City!!!!!!!!!!!!!!!!!!!",cities.getJSONObject(i).getString("city"));
+     					}
+     						Log.d("City LIST!!!!!!!!!!!!!!",city.toString());
+     				} catch (JSONException e) {
+     					// TODO Auto-generated catch block
+     					e.printStackTrace();
+     				}
+         	         
+         	        	
+         	        
+
+         	        
+         	        // call  request to get list of cities and store it in this.cities 
+         	        
+         	        
+         	        
+         	        
+         	   //------------------------------<INitalise the city inside the state on selected>------------------------------
+         	    	Log.d("I am here%%%%%%%%%%%%%%%%333333333333333", "I am here%%%%%%%%%%%%%%%%33333333333333");
+         	        spinnerCity=(Spinner)findViewById(R.id.city_spinner);
+         	    	ArrayAdapter<String> dataAdaptercity = new ArrayAdapter<String>(context,
+         	    			android.R.layout.simple_spinner_item, city);
+         	    	
+         	    	dataAdaptercity.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+         	    	spinnerCity.setAdapter(dataAdaptercity);
+         	    	
+         	    	spinnerCity.setOnItemSelectedListener(new OnItemSelectedListener() {
+         	    		
+         	    		@Override
+         	    	      public void onItemSelected(AdapterView<?> arg0, View arg1,
+         	    	          int arg2, long arg3) {
+         	    	        int index = arg0.getSelectedItemPosition();
+         	    	        
+         	    	       selectedCity= city.get(index); 
+         	    	       selectedCityIndex=index;
+         	    	       Museums =new ArrayList(); 
+         	    	       try {
+         					JSONArray entry=LocationJson.getJSONArray(selectedState);
+         					JSONObject entrymu =entry.getJSONObject(selectedCityIndex);
+         					JSONArray allmuseums=entrymu.getJSONArray("museum");
+         					Log.d("second@@@@@@@@@@@@@@@@@@@@@@@@@@",allmuseums.toString());
+         					for(int j=0;j<allmuseums.length();j++){
+         						Log.d(" Museums second@@@@@@@@@@@@@@@@@@@@@@@@@@",(String)allmuseums.get(j));
+         						Museums.add((String)allmuseums.get(j));
+         						Log.d("count+++++++++++++++++++++","count"+j);
+         					}
+         					
+							Log.d("Museum LIST ####################", Museums.toString());
+         				} catch (JSONException e) {
+         					// TODO Auto-generated catch block
+         					e.printStackTrace();
+         				}
+         	    	        
+         	    	        
+         	    	        
+         	    	        Toast.makeText(getBaseContext(),
+         	    	            "You have selected item : " + city.get(index),
+         	    	            Toast.LENGTH_SHORT).show();
+         	    	 
+         	    	        
+         	    	     //--------------------<intialise the museums inside the city selected>--------------------------
+         	    	        
+         	    	        spinnerMuseum=(Spinner)findViewById(R.id.museum_spinner);
+         	    	     	ArrayAdapter<String> dataAdaptermusuem = new ArrayAdapter<String>(context,
+         	    	     			android.R.layout.simple_spinner_item, Museums);
+         	    	     	
+         	    	     	dataAdaptermusuem.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+         	    	     	spinnerMuseum.setAdapter(dataAdaptermusuem);
+         	    	     	
+         	    	     	spinnerMuseum.setOnItemSelectedListener(new OnItemSelectedListener(){
+
+         	    				@Override
+         	    				public void onItemSelected(AdapterView<?> arg0, View arg1,
+         	    		    	          int arg2, long arg3) {
+         	    					// TODO Auto-generated method stub
+         	    					
+         	    			        int index = arg0.getSelectedItemPosition();
+         	    			        selectedMuseumIndex=index;
+         	    	    	        selectedMuseum=Museums.get(index);
+         	    	    	        
+         	    	    	        JSONArray entry;
+         	    					try {
+         	    						entry = LocationJson.getJSONArray(selectedState);
+         	    						JSONObject entrymu =entry.getJSONObject(selectedCityIndex);
+         	    						JSONArray allpk=entrymu.getJSONArray("pk");
+         	    						
+         	    						primarykey=allpk.get(selectedMuseumIndex).toString();
+         	    						Log.d("primary key @@@@@@@@@@@@@@@",primarykey);
+         	    						
+         	    						
+         	    					} catch (JSONException e) {
+         	    						// TODO Auto-generated catch block
+         	    						e.printStackTrace();
+         	    					}
+         	    					
+         	    	    	        
+         	    	    	        
+         	    	    	        
+         	    	    	        
+         	    	    	        Toast.makeText(getBaseContext(),
+         	    	    	            "You have selected item : " + states.get(index),
+         	    	    	            Toast.LENGTH_SHORT).show();	
+         	    					
+         	    				}
+
+         	    				@Override
+         	    				public void onNothingSelected(AdapterView<?> parent) {
+         	    					// TODO Auto-generated method stub
+         	    					
+         	    				}
+         	    	     		
+         	    	     	}); 
+         	    	        
+         	    	        
+         	    	        
+         	    	        
+         	    	   
+         	    	       
+         	     	        
+         	    	      }
+
+         	    	      @Override
+         	    	      public void onNothingSelected(AdapterView<?> arg0) {
+         	    	      }
+         	    	 
+         	    		
+         	    		
+         			});
+         	        
+         	        
+         	        
+         	        
+         	         
+         	      }
+
+         	      @Override
+         	      public void onNothingSelected(AdapterView<?> arg0) {
+         	      }
+         	 
+         		
+         		
+     		});
+        	   
+        	   
+        	   
+        	   
+        	   
+        	  /* List<String> museum=new ArrayList<String>();
+        	  // Musuems=result.getMusuems();
         	   Log.d("result-onPostExecute", result.toString());
         	   spinnerMuseum=(Spinner)findViewById(R.id.museum_spinner);
         	   ArrayAdapter<String> dataAdaptermuseum = new ArrayAdapter<String>(context,
-           			android.R.layout.simple_spinner_item, Musuems);
+           			android.R.layout.simple_spinner_item, Museums);
            	
         	   dataAdaptermuseum.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        	   spinnerMuseum.setAdapter(dataAdaptermuseum);
+        	   spinnerMuseum.setAdapter(dataAdaptermuseum);*/
         	   
            }
             });
@@ -91,9 +278,14 @@ public class EDocentSplashActivity extends ActionBarActivity implements AdapterV
         setContentView(R.layout.splash_page);
         this.context=this;
         this.spinnerState=(Spinner)findViewById(R.id.state_spinner);
+        PerformSplashpageSearch request=new PerformSplashpageSearch();
+        //request.execute("http://edocent.herokuapp.com/curator/?state=MA&city=Boston");
+        request.execute("http://edocent.herokuapp.com/curator/locations/");
     	states=new ArrayList<String>();
     	states.add("MA");
     	states.add("NY");
+    	states.add("ME");
+    	states.add("OK");
     	states.add("NJ");
     	states.add("RH");
     	states.add("NH");
@@ -115,102 +307,39 @@ public class EDocentSplashActivity extends ActionBarActivity implements AdapterV
     	
     	
     	
-    	Musuems=new ArrayList<String>();
+    	//Musuems=new ArrayList<String>();
     
-    	
+    	Log.d("I am here%%%%%%%%%%%%%%%%11111111111111111", "I am here%%%%%%%%%%%%%%%%11111111111111111");
     	 this.submit=(Button) findViewById(R.id.ButtonSendFeedback);
     	 this.submit.setOnClickListener(new Button.OnClickListener(){
          
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				
+				// TODO Auto-generated method stub			
+				//pass the appropriate key to select the museums,as args
 				Intent intent =new Intent(context,MuseumDescActivity.class);
-				//intent.putExtra("",);
+				Log.d("passingGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG", primarykey);
+				intent.putExtra("musuemprimarykey",primarykey);
 				startActivity(intent);
 				
 			}
     		 
     	 });
     	
-    	
-    	ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
-    			android.R.layout.simple_spinner_item, states);
-    	
-    	dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-    	spinnerState.setAdapter(dataAdapter);
-    	
-    	spinnerState.setOnItemSelectedListener(new OnItemSelectedListener() {
-    		
-    		@Override
-    	      public void onItemSelected(AdapterView<?> arg0, View arg1,
-    	          int arg2, long arg3) {
-    	        int index = arg0.getSelectedItemPosition();
-    	        selectedState=states.get(index);
-    	        
-    	        Toast.makeText(getBaseContext(),
-    	            "You have selected item : " + states.get(index),
-    	            Toast.LENGTH_SHORT).show();	
-    	        
-    	        
-    	        /*
-    	         * 
-    	         * 
-    	         * call http request to get list of cities and store it in this.cities
-    	         * 
-    	         * */
-    	      }
 
-    	      @Override
-    	      public void onNothingSelected(AdapterView<?> arg0) {
-    	      }
-    	 
-    		
-    		
-		});
     	
     	
     	
-    	 this.spinnerCity=(Spinner)findViewById(R.id.city_spinner);
-    	ArrayAdapter<String> dataAdaptercity = new ArrayAdapter<String>(this,
-    			android.R.layout.simple_spinner_item, city);
-    	
-    	dataAdaptercity.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-    	spinnerCity.setAdapter(dataAdaptercity);
-    	
-    	spinnerCity.setOnItemSelectedListener(new OnItemSelectedListener() {
-    		
-    		@Override
-    	      public void onItemSelected(AdapterView<?> arg0, View arg1,
-    	          int arg2, long arg3) {
-    	        int index = arg0.getSelectedItemPosition();
-    	        
-    	       selectedCity= city.get(index);   
-    	        
-    	        
-    	        
-    	        
-    	        
-    	        Toast.makeText(getBaseContext(),
-    	            "You have selected item : " + city.get(index),
-    	            Toast.LENGTH_SHORT).show();
-    	        
-    	        
-    	        PerformSplashpageSearch request=new PerformSplashpageSearch();
-    	        request.execute("http://edocent.herokuapp.com/curator/?state=MA&city=Boston");
-    	       
-     	        
-    	      }
-
-    	      @Override
-    	      public void onNothingSelected(AdapterView<?> arg0) {
-    	      }
-    	 
-    		
-    		
-		});
     	
     	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+      	
 
     	
 	}
@@ -231,7 +360,16 @@ public class EDocentSplashActivity extends ActionBarActivity implements AdapterV
     	
     	
     	
-
+    public void fillSpinnerCity(String state){
+    	
+    }
+    
+    
+    
+    
+    public void fillSpinnermuseums(String city){
+    	
+    }
 
 	@Override
     public boolean onCreateOptionsMenu(Menu menu) {

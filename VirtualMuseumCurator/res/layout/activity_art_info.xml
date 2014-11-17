@@ -94,4 +94,12 @@
 	        </LinearLayout> 
     </LinearLayout>
 
+   <Button
+       android:id="@+id/art_share"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_below="@+id/linearlayout_art"
+       android:layout_marginTop="14dp"
+       android:hint="Share" />
+
 </RelativeLayout>

@@ -38,6 +38,9 @@ public class MuseumLocationActivity extends FragmentActivity implements Location
 	private LocationManager locationManager;
 	private float currlat;
 	private float currlng;
+	private float mlat;
+	private float mlng;
+	
 	
 	private TextView Direction;
 	
@@ -50,15 +53,17 @@ public class MuseumLocationActivity extends FragmentActivity implements Location
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_museum_location);
 		Log.d("at MuseumLocation", "MuseumLocation");
-		Intent intent=getIntent();	
+		Intent intent=getIntent();
+		Bundle extras=getIntent().getExtras();
+		mlat=Float.parseFloat(extras.getString("lat"));
+		mlng=Float.parseFloat(extras.getString("lng"));
+		
 		float lat=0;
 		float lng=0;
 		if(intent!=null){
-			 lat= intent.getFloatExtra("Lat",(float)42.339151000000001);
-			 lng=intent.getFloatExtra("lng", (float)-71.093853099999990);
-			this.musuemLocation=new LatLng(lat,lng);
-			this.phoneNumber=intent.getStringExtra("phone");
-			this.address=intent.getStringExtra("Address");
+			this.musuemLocation=new LatLng(mlat,mlng);
+			this.phoneNumber=extras.getString("phone");
+			this.address=extras.getString("Address");
 		}
 		Log.d("before Direction",lat+","+lng);
 		
@@ -134,7 +139,7 @@ public class MuseumLocationActivity extends FragmentActivity implements Location
 	}
 	
 	public void onClickDirection(View v){
-		String uri = String.format(Locale.ENGLISH, "http://maps.google.com/maps?saddr=%f,%f(%s)&daddr=%f,%f (%s)", 42.341516, -71.098307, "Home Sweet Home", 42.339151000000001, -71.093853099999990, "Where the party is at");
+		String uri = String.format(Locale.ENGLISH, "http://maps.google.com/maps?saddr=%f,%f(%s)&daddr=%f,%f (%s)", 42.350196 , -71.109170, "Home Sweet Home", mlat, mlng, "Where the party is at");
 		Intent intent =new Intent(android.content.Intent.ACTION_VIEW,Uri.parse(uri));
 		intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
 		startActivity(intent);
