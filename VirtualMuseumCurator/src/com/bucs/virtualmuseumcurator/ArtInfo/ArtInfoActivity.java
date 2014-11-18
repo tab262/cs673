@@ -1,5 +1,9 @@
 package com.bucs.virtualmuseumcurator.ArtInfo;
 
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 import org.brickred.socialauth.android.DialogListener;
 import org.brickred.socialauth.android.SocialAuthAdapter;
 import org.brickred.socialauth.android.SocialAuthAdapter.Provider;
@@ -7,12 +11,14 @@ import org.brickred.socialauth.android.SocialAuthError;
 import org.brickred.socialauth.android.SocialAuthListener;
 
 import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -58,7 +64,39 @@ public class ArtInfoActivity extends ActionBarActivity {
 			// TODO Auto-generated method stub
 			
 		}
-	} 
+	}
+	
+	 class URLtoImage extends AsyncTask<String, Void, Bitmap> {
+		protected Bitmap doInBackground(String... params) {
+			try {
+				Log.d("Individual image calling #########################", params[0]);
+				URL url = new URL(params[0]);
+				HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+				connection.setDoInput(true);
+				connection.connect();
+				InputStream input = connection.getInputStream();
+				return BitmapFactory.decodeStream(input);
+				 
+				
+			} catch (Exception e) {
+				// TODO: handle exception
+				e.printStackTrace();
+				return null;
+		}
+	}
+		
+		protected void onPostExecute(Bitmap feed) {
+	        // TODO: check this.exception 
+	        // TODO: do something with the feed
+			Log.d("IMage assigned :)))))))))))))))))",":::))))))");
+			artImage.setImageBitmap(feed);
+		    //iv.setImageBitmap(bitmap);
+		    		    
+	    }
+	
+	}
+	
+	
 	
 	private final class MessageListener implements SocialAuthListener{
 		
@@ -94,6 +132,7 @@ public class ArtInfoActivity extends ActionBarActivity {
 		setContentView(R.layout.activity_art_info);
 		 
 	    Bundle bundle=getIntent().getExtras();
+	    String index=bundle.getString("index");
 	    ArtInfoDataModel artobj=(ArtInfoDataModel)bundle.getSerializable("artobj");
 	    this.artTitle=(TextView)findViewById(R.id.art_title);
 	    this.artDate=(TextView)findViewById(R.id.art_date);
@@ -101,17 +140,18 @@ public class ArtInfoActivity extends ActionBarActivity {
 	    this.artType=(TextView)findViewById(R.id.art_type);
 	    this.artImage=(ImageView)findViewById(R.id.art_image);
 	    this.context=this;
-	    //this.shareFaceButton
-	    	
+	    URLtoImage urlimage= new URLtoImage();
+	    urlimage.execute(new String[]{"https://s3.amazonaws.com/edocent/"+artobj.getPictureurlpath()});	
 	    artTitle.setText(artobj.getName());
 	    artDate.setText(artobj.getDate());
 	    artDescription.setText(artobj.getDescription());
 	    artType.setText(artobj.getType());
-	    //artImage.setImageBitmap(artobj.get);
+	    Log.d("ARTIMAGE $$$$$$$$$$^^^^^^^^^^^^^^^&&&&&&&&&&","DDDDDDD");
+	   // artImage.setImageBitmap(artobj.getPicturebitmap());
 	    
 	    
 	    Button sharefacebook=(Button) findViewById(R.id.art_share);
-	   adapter =new SocialAuthAdapter(new ResponseListener());
+	    adapter =new SocialAuthAdapter(new ResponseListener());
 	    
 	    adapter.addProvider(Provider.FACEBOOK,R.drawable.facebook);
 	    //adapter.addProvider(Provider.TWITTER, R.drawable.twitter);

@@ -7,10 +7,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.graphics.Bitmap;
 import android.media.MediaPlayer;
-import android.os.Bundle;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.util.Log;
 
 
@@ -21,7 +19,139 @@ public class ArtInfoDataModel implements Serializable {
 	private String location;
 	private String Type;
 	private String Description;
+	private Bitmap Picturebitmap;
+	private String pictureurlpath;
+	private String mediaurlpath;
+	private String Artid;
+	private String Collection;
 	
+	public String getArtid() {
+		return Artid;
+	}
+
+	public void setArtid(String artid) {
+		Artid = artid;
+	}
+
+	public String getCollection() {
+		return Collection;
+	}
+
+	public void setCollection(String collection) {
+		Collection = collection;
+	}
+
+	public String getArtistimageurl() {
+		return Artistimageurl;
+	}
+
+	public void setArtistimageurl(String artistimageurl) {
+		Artistimageurl = artistimageurl;
+	}
+
+	public Bitmap getArtistimageBitmap() {
+		return ArtistimageBitmap;
+	}
+
+	public void setArtistimageBitmap(Bitmap artistimageBitmap) {
+		ArtistimageBitmap = artistimageBitmap;
+	}
+
+	private String Artistname;
+	private String Artistnationality;
+	private String Artistbiography;
+	private String ArtistdateOfBirth;
+	private String ArtistdateOfDeath;
+	private String Artistimageurl;
+	private Bitmap ArtistimageBitmap;
+	private String Artistowner;
+	
+	
+	
+	
+	
+	
+		
+	public Bitmap getPicturebitmap() {
+		return Picturebitmap;
+	}
+
+	public void setPicturebitmap(Bitmap picture) {
+		Picturebitmap = picture;
+	}
+
+	public String getPictureurlpath() {
+		return pictureurlpath;
+	}
+
+	public void setPictureurlpath(String pictureurlpath) {
+		this.pictureurlpath = pictureurlpath;
+	}
+
+	public String getMediaurlpath() {
+		return mediaurlpath;
+	}
+
+	public void setMediaurlpath(String mediaurlpath) {
+		this.mediaurlpath = mediaurlpath;
+	}
+
+	public String getArtistname() {
+		return Artistname;
+	}
+
+	public void setArtistname(String artistname) {
+		Artistname = artistname;
+	}
+
+	public String getArtistnationality() {
+		return Artistnationality;
+	}
+
+	public void setArtistnationality(String artistnationality) {
+		Artistnationality = artistnationality;
+	}
+
+	public String getArtistbiography() {
+		return Artistbiography;
+	}
+
+	public void setArtistbiography(String artistbiography) {
+		Artistbiography = artistbiography;
+	}
+
+	public String getArtistdateOfBirth() {
+		return ArtistdateOfBirth;
+	}
+
+	public void setArtistdateOfBirth(String artistdateOfBirth) {
+		ArtistdateOfBirth = artistdateOfBirth;
+	}
+
+	public String getArtistdateOfDeath() {
+		return ArtistdateOfDeath;
+	}
+
+	public void setArtistdateOfDeath(String artistdateOfDeath) {
+		ArtistdateOfDeath = artistdateOfDeath;
+	}
+
+	public String getArtistimage() {
+		return Artistimageurl;
+	}
+
+	public void setArtistimage(String artistimage) {
+		Artistimageurl = artistimage;
+	}
+
+	public String getArtistowner() {
+		return Artistowner;
+	}
+
+	public void setArtistowner(String artistowner) {
+		Artistowner = artistowner;
+	}
+
 	public ArtInfoDataModel(JSONObject obj){
 		
 		
@@ -29,7 +159,19 @@ public class ArtInfoDataModel implements Serializable {
 			this.Name=obj.getString("title");
 			this.Date=obj.getString("creationDate");
 			this.Description=obj.getString("description");
-			this.Type=obj.getString("artType");
+			this.pictureurlpath=obj.getString("image");
+			this.mediaurlpath=obj.getString("audio");
+			this.Collection=obj.getString("collection");
+			this.Artid=obj.getString("id");
+			
+			//for the artist
+			JSONObject Artistobject=obj.getJSONObject("artist");
+			this.Artistname=Artistobject.getString("name");
+			this.ArtistdateOfBirth=Artistobject.getString("dateOfBirth");
+			this.ArtistdateOfDeath=Artistobject.getString("dateOfDeath");
+			this.Artistimageurl=Artistobject.getString("image");
+			this.Artistowner=Artistobject.getString("owner");
+			//this.Type=obj.getString("artType");
 			
 		} catch (JSONException e) {
 			// TODO Auto-generated catch block
@@ -107,11 +249,10 @@ public class ArtInfoDataModel implements Serializable {
 		
 		for (int i =0; i<arry.length();i++){
 			try {
-				JSONObject firstentry=arry.getJSONObject(i);
-				Log.d("artobj!!!!!!!!!!!!!", firstentry.toString());
-				JSONArray art= firstentry.getJSONArray("art_objects");
-				list.add(new ArtInfoDataModel((JSONObject) art.get(0) ));
-				Log.d("listart!!!!!!!!!!!!!", art.toString());
+				JSONObject entry=arry.getJSONObject(i);
+				Log.d("artobj!!!!!!!!!!!!!", entry.toString());
+				list.add(new ArtInfoDataModel((JSONObject) entry ));
+				Log.d("listart!!!!!!!!!!!!!", list.toString());
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

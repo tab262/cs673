@@ -39,7 +39,7 @@ public class CollectionPageFragment extends ListFragment{
         //Pass the data to the Art Activity
     	Intent intent=new Intent();
     	intent.setClass(this.context, ArtInfoActivity.class);
-    	
+    	intent.putExtra("index",position);
     	Bundle bundle=new Bundle();
     	bundle.putSerializable("artobj", this.artobjects.get(position));
     	intent.putExtras(bundle);

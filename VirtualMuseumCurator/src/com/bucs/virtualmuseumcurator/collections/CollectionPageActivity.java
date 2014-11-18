@@ -1,24 +1,27 @@
 package com.bucs.virtualmuseumcurator.collections;
 
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.ArrayList;
-import java.util.List;
+
 import org.json.JSONArray;
-import org.json.JSONObject;
 
 import android.app.FragmentManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
+
 import com.bucs.virtualmuseumcurator.R;
+import com.bucs.virtualmuseumcurator.collections.CollectionPageAdapter.ViewHolder.ImageArtobj;
 import com.bucs.virtualmuseumcurator.datamodel.ArtInfoDataModel;
-import com.bucs.virtualmuseumcurator.datamodel.CollectionPageData;
 import com.bucs.virtualmuseumcurator.datamodel.CollectionRowContent;
-import com.bucs.virtualmuseumcurator.museumhome.HomePageFragment;
 
 
 
@@ -29,10 +32,17 @@ public class CollectionPageActivity extends ActionBarActivity {
 	private MuseumCollectionHttpClient collectionClient;
 	private CollectionPageActivity context;
 	
-    private class RetrieveCollection extends AsyncTask<String, Void, JSONArray> {
+	public class WrapperCollecRowArtObj{
+		public ArrayList<CollectionRowContent> rowcollectionlist=new ArrayList<CollectionRowContent>();
+		public  ArrayList<ArtInfoDataModel> individualartobjectlist=new ArrayList<ArtInfoDataModel>();
+		public JSONArray jsoncollectionarray=new JSONArray();
+		}
+	
+	
+    private class RetrieveCollection extends AsyncTask<String, Void, WrapperCollecRowArtObj> {
 
         @Override
-        protected JSONArray doInBackground(String... params) {
+        protected WrapperCollecRowArtObj doInBackground(String... params) {
           try{ 
         	       Log.d("RetrieveCollectionbackgroundThread","RetrieveCollection");
 			           String url =params[0];  
@@ -40,10 +50,41 @@ public class CollectionPageActivity extends ActionBarActivity {
 			   		 * Get the Json response from the server for the list of collection of art pieces 
 			   		 * which is in JSONArray format
 			   		 * */
+			        
+			        WrapperCollecRowArtObj wrappobj=new WrapperCollecRowArtObj();
+			           
 			   		MuseumCollectionHttpClient collectionClient=new MuseumCollectionHttpClient();
 			   		JSONArray exhibitionArray=collectionClient.retrieve(url);
+			   		wrappobj.jsoncollectionarray=exhibitionArray;
+			   		
+			   		
+			   		//for the collection list view
+			   		ArrayList<CollectionRowContent> rowvalues=new ArrayList<CollectionRowContent>();
+			   		rowvalues=CollectionRowContent.fromJSON(exhibitionArray);
+			   		wrappobj.rowcollectionlist=rowvalues;
+			   		//for the individual art display
+			   		ArrayList<ArtInfoDataModel> artlist= new ArrayList<ArtInfoDataModel>();   		
+			   		artlist=ArtInfoDataModel.fromJSONArray(exhibitionArray);
+			   		wrappobj.individualartobjectlist=artlist;
+			   		
+			   		for(int index=0; index< rowvalues.size();index++){
+			   			URL imageurl=new URL("https://s3.amazonaws.com/edocent/"+artlist.get(index).getPictureurlpath());
+			   			Log.d("URL^^^^^^^^^^^^^^^^^^^^^^^", imageurl.toString());
+			   			HttpURLConnection connection;
+			   			connection = (HttpURLConnection) imageurl.openConnection();
+			   			connection.setDoInput(true);
+			   			connection.connect();
+			   			InputStream input = connection.getInputStream();
+			   			Bitmap myBitmap = BitmapFactory.decodeStream(input);
+			   			//artlist.get(index).setPicturebitmap(myBitmap);
+			   			rowvalues.get(index).setBitmap(myBitmap);		   			
+			   			//holder.image.setImageBitmap(myBitmap);*/
+   			
+			   		}
+			   		 		
+			   		
 			        Log.d("RetrieveCollectionresult", exhibitionArray.toString());
-			           return exhibitionArray;
+			           return wrappobj;
 			          }
 			          catch(Exception e)
 			          {
@@ -53,7 +94,7 @@ public class CollectionPageActivity extends ActionBarActivity {
         }
         
         @Override
-        protected void onPostExecute(final JSONArray exhibitionArray) {         
+        protected void onPostExecute(final WrapperCollecRowArtObj wrapperexhibition) {         
            runOnUiThread(new Runnable() {
            @Override
 				           public void run() {
@@ -62,20 +103,18 @@ public class CollectionPageActivity extends ActionBarActivity {
 						   		 * Pass the json response to .fromJSON() function to construct a list of  ArrayList<CollectionRowContent> to 
 						   		 * be given the adapter
 						   		 * */
-						   		ArrayList rowvalues=new ArrayList<CollectionRowContent>();
-						   		rowvalues=CollectionRowContent.fromJSON(exhibitionArray);
-						   		ArrayList<ArtInfoDataModel> artlist= new ArrayList<ArtInfoDataModel>();
+        	   
+        	    			
 						   		
-						   		artlist=ArtInfoDataModel.fromJSONArray(exhibitionArray);
-						   		
-						   		
+        	   					ArrayList<ArtInfoDataModel> copyartlist= new ArrayList<ArtInfoDataModel>(); 
+        	   					copyartlist=wrapperexhibition.individualartobjectlist;
 						        FragmentManager fm= getFragmentManager();
 						        android.app.FragmentTransaction ft=fm.beginTransaction();
-						        CollectionPageFragment frag=new CollectionPageFragment(artlist,context);
+						        CollectionPageFragment frag=new CollectionPageFragment(copyartlist,context);
 						        ft.add(R.id.collection_list_view, frag);
-						        Log.d("result-onPostExecute1",exhibitionArray.toString());
+						        Log.d("result-onPostExecute1",wrapperexhibition.toString());
 						       // Log.d("result-onPostExecute2",rowvalues.get(1).getString("description"));
-						   	    com.bucs.virtualmuseumcurator.collections.CollectionPageAdapter adapter= new CollectionPageAdapter(context,R.layout.rowlayoutcollections,rowvalues);
+						   	    com.bucs.virtualmuseumcurator.collections.CollectionPageAdapter adapter= new CollectionPageAdapter(context,R.layout.rowlayoutcollections,wrapperexhibition.rowcollectionlist);
 						   	    Log.d("before Adapter!!!!!!!!!!","");
 						   	    frag.setListAdapter(adapter);
 						   	    Log.d("after Adapter!!!!!!!!!","");
@@ -96,8 +135,8 @@ public class CollectionPageActivity extends ActionBarActivity {
 		setContentView(R.layout.activity_collection_page);
 		this.context=this;
 		RetrieveCollection task= new RetrieveCollection(); 
-        task.execute(new String[] { "http://edocent.herokuapp.com/curator/1/exhibitions/"});
-		
+        //task.execute(new String[] { "http://edocent.herokuapp.com/curator/1/exhibitions/"});
+        task.execute(new String[] {"http://edocent.herokuapp.com/curator/1/collection/1/"});
 	}
 
 	@Override

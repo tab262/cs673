@@ -20,11 +20,35 @@ public class CollectionRowContent {
 	}
 
 	public Bitmap getBitmap() {
-		return bitmap;
+		return artimagebitmap;
+	}
+
+	public String getArtcreationdate() {
+		return artcreationdate;
+	}
+
+	public void setArtcreationdate(String artcreationdate) {
+		this.artcreationdate = artcreationdate;
+	}
+
+	public String getArtownername() {
+		return artownername;
+	}
+
+	public void setArtownername(String artownername) {
+		this.artownername = artownername;
+	}
+
+	public String getArtimageurl() {
+		return artimageurl;
+	}
+
+	public void setArtimageurl(String artimageurl) {
+		this.artimageurl = artimageurl;
 	}
 
 	public void setBitmap(Bitmap bitmap) {
-		this.bitmap = bitmap;
+		this.artimagebitmap = bitmap;
 	}
 
 	private String artName;
@@ -32,20 +56,25 @@ public class CollectionRowContent {
 	private String artLocation;
 	private String artstartDate;
 	private String artendDate;
+	private String artcreationdate;
 	private String artDescription;
 	private String artlink;
-	private Bitmap bitmap;
+	private Bitmap artimagebitmap;
+	private String artownername;
+	private String artimageurl;
 	
 	
 	public CollectionRowContent(JSONObject jobj){
 		try{
 			this.artName=jobj.getString("title");
 			this.artDescription=jobj.getString("description");
-			this.artstartDate=jobj.getString("startDate");
+			this.artcreationdate=jobj.getString("creationDate");
+			this.artownername=jobj.getJSONObject("artist").getString("name");
+			/*this.artstartDate=jobj.getString("startDate");
 			this.artendDate=jobj.getString("endDate");
 			JSONArray jarr=jobj.getJSONArray("art_objects");
-			JSONObject jsonartobj=jarr.getJSONObject(0);
-			artlink=jsonartobj.getString("image");
+			JSONObject jsonartobj=jarr.getJSONObject(0);*/
+			this.artlink=jobj.getString("image");
 			
 			
 		}
