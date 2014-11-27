@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/ScrollView01"
+  android:layout_width="fill_parent"
+  android:layout_height ="fill_parent" 
+  android:scrollbars="vertical">
+  
+
+    
+ <LinearLayout
+        android:layout_width="fill_parent"
+        android:orientation="vertical" 
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:weightSum="50">
+ <!--  Form Controls -->
+ 
+ <TextView
+    android:id="@+id/TextViewTitle0"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/welcome"
+    android:gravity="center"
+    android:layout_margin="10dp"
+    android:textSize="30sp"
+    android:textStyle="bold"
+    android:textColor="#3399FF"/>
+   
+ <TextView
+    android:id="@+id/TextViewTitle1"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/state_name"
+    android:gravity="center"
+    android:layout_margin="10dp"
+    android:textSize="15sp"
+    android:textStyle="bold"
+    android:textColor="#3399FF"/>
+
+
+ <Spinner
+        android:id="@+id/state_spinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+         android:textSize="15sp"
+         android:textStyle="bold"  
+        android:prompt="@string/spinner_prompt"/>
+ 
+ 
+  <TextView
+    android:id="@+id/TextViewTitle2"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:text="@string/city_name"
+    android:gravity="center"
+    android:layout_margin="10dp"
+    android:textSize="15sp"
+    android:textStyle="bold"
+    android:textColor="#3399FF"/>
+ 
+ 
+ 
+  <Spinner
+        android:id="@+id/city_spinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+         android:textSize="15sp"
+        android:textStyle="bold"
+        android:prompt="@string/spinner_prompt"/>
+  
+  
+   <TextView
+    android:id="@+id/TextViewTitle3"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_horizontal"
+    android:text="@string/museum_prompt"
+    android:layout_margin="10dp"
+    android:textSize="15sp"
+    android:textStyle="bold"
+    android:textColor="#3399FF"/>
+  
+   <Spinner
+        android:id="@+id/museum_spinner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+         android:textSize="15sp"
+   		 android:textStyle="bold"
+   		 
+        android:prompt="@string/spinner_prompt"/>
+ 
+ 
+
+
+
+	<Button
+	    android:id="@+id/ButtonSendFeedback"
+	    android:layout_height="wrap_content"
+	    android:layout_width="wrap_content"
+	    android:gravity="center_horizontal"
+	    android:text="@string/submitbutton"
+	    android:onClick="onClick"
+	    android:textStyle="bold"
+	    android:layout_margin="40dp"
+	    android:textSize="15sp"
+	    android:textColor="#3399FF" />
+    
+</LinearLayout>
+  
+</ScrollView>
