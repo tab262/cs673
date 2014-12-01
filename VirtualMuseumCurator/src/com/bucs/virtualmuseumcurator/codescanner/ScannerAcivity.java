@@ -1,5 +1,6 @@
 package com.bucs.virtualmuseumcurator.codescanner;
 
+import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,11 +17,15 @@ import android.widget.Toast;
 import com.bucs.virtualmuseumcurator.R;
 
 public class ScannerAcivity extends ActionBarActivity {
+
+	
+	private Activity context;
 	
 	/** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.context=this;
         setContentView(R.layout.activity_scanner_acivity);
         
         try {
@@ -31,6 +36,12 @@ public class ScannerAcivity extends ActionBarActivity {
                     Intent intent = new Intent("com.google.zxing.client.android.SCAN");
                     intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
                     startActivityForResult(intent, 0);
+                	
+                   /* Intent QRResultintent= new Intent();
+                    QRResultintent.setClass(context, QRResultActivity.class);
+                    QRResultintent.putExtra("artlink", "http://edocent.herokuapp.com/curator/art/2/");
+                    startActivity(QRResultintent);*/
+                	
                 }
  
             });
@@ -42,6 +53,13 @@ public class ScannerAcivity extends ActionBarActivity {
                     Intent intent = new Intent("com.google.zxing.client.android.SCAN");
                     intent.putExtra("SCAN_MODE", "PRODUCT_MODE");
                     startActivityForResult(intent, 0);
+
+
+               /* Intent QRResultintent= new Intent();
+                QRResultintent.setClass(context, QRResultActivity.class);
+                QRResultintent.putExtra("artlink", "http://edocent.herokuapp.com/curator/art/2/");
+                startActivity(QRResultintent);*/
+                    
                 }
  
             });
@@ -61,6 +79,12 @@ public class ScannerAcivity extends ActionBarActivity {
                 Toast toast = Toast.makeText(this, "Content:" + contents + " Format:" + format , Toast.LENGTH_LONG);
                 toast.setGravity(Gravity.TOP, 25, 400);
                 toast.show();
+                Intent QRResultintent= new Intent();
+                QRResultintent.setClass(this.context, QRResultActivity.class);
+                QRResultintent.putExtra("artlink", contents);
+                startActivity(QRResultintent);
+                
+                
             } else if (resultCode == RESULT_CANCELED) {
                 // Handle cancel
                 Toast toast = Toast.makeText(this, "Scan was Cancelled!", Toast.LENGTH_LONG);

@@ -70,8 +70,12 @@
             android:label="@string/title_activity_scanner_acivity" >
         </activity>
         <activity
-            android:name="com.bucs.virtualmuseumcurator.information.MuseumInformation"
+            android:name=".information.MuseumInformation"
             android:label="@string/title_activity_museum_information" >
+        </activity>
+        <activity
+            android:name="com.bucs.virtualmuseumcurator.codescanner.QRResultActivity"
+            android:label="@string/title_activity_qrresult" >
         </activity>
     </application>
 

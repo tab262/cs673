@@ -63,10 +63,11 @@ public class HomePageAdapter extends ArrayAdapter<String>{
 		String s=names[position];
 		
 		holder.text.setText(s);
+		//image
 		holder.image.setImageDrawable(pictures.getDrawable(position));
 		
-		//image
-		//holder.image.setImageResource(R.drawable.upcoming);
+		
+	
 		
 		return rowView;
 		

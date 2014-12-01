@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import org.json.JSONArray;
 
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -131,12 +132,17 @@ public class CollectionPageActivity extends ActionBarActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
+
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_collection_page);
 		this.context=this;
-		RetrieveCollection task= new RetrieveCollection(); 
+		RetrieveCollection task= new RetrieveCollection();
+		Bundle extras=getIntent().getExtras();
+		String primarykey=extras.getString("primarykey");
         //task.execute(new String[] { "http://edocent.herokuapp.com/curator/1/exhibitions/"});
-        task.execute(new String[] {"http://edocent.herokuapp.com/curator/1/collection/1/"});
+        task.execute(new String[] {"http://edocent.herokuapp.com/curator/"+primarykey+"/collection/1/"});
 	}
 
 	@Override

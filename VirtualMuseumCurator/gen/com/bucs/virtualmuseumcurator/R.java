@@ -1747,12 +1747,13 @@ containing a value of this type.
         public static final int activity_museum_desc=0x7f03001a;
         public static final int activity_museum_information=0x7f03001b;
         public static final int activity_museum_location=0x7f03001c;
-        public static final int activity_scanner_acivity=0x7f03001d;
-        public static final int rowlayoutcollections=0x7f03001e;
-        public static final int rowlayouthomepage=0x7f03001f;
-        public static final int share=0x7f030020;
-        public static final int splash_page=0x7f030021;
-        public static final int support_simple_spinner_dropdown_item=0x7f030022;
+        public static final int activity_qrresult=0x7f03001d;
+        public static final int activity_scanner_acivity=0x7f03001e;
+        public static final int rowlayoutcollections=0x7f03001f;
+        public static final int rowlayouthomepage=0x7f030020;
+        public static final int share=0x7f030021;
+        public static final int splash_page=0x7f030022;
+        public static final int support_simple_spinner_dropdown_item=0x7f030023;
     }
     public static final class menu {
         public static final int art_info=0x7f0e0000;
@@ -1761,7 +1762,8 @@ containing a value of this type.
         public static final int museum_desc=0x7f0e0003;
         public static final int museum_information=0x7f0e0004;
         public static final int museum_location=0x7f0e0005;
-        public static final int scanner_acivity=0x7f0e0006;
+        public static final int qrresult=0x7f0e0006;
+        public static final int scanner_acivity=0x7f0e0007;
     }
     public static final class raw {
         public static final int beep=0x7f050000;
@@ -2037,6 +2039,7 @@ containing a value of this type.
         public static final int title_activity_event_page=0x7f080037;
         public static final int title_activity_museum_information=0x7f0800b6;
         public static final int title_activity_museum_location=0x7f08002e;
+        public static final int title_activity_qrresult=0x7f0800b7;
         public static final int title_activity_scanner_acivity=0x7f0800b5;
         /**  Text on a placeholder buy button when Google Play services is not
          available or up-to-date 

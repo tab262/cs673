@@ -319,7 +319,7 @@ public class EDocentSplashActivity extends ActionBarActivity implements AdapterV
 				//pass the appropriate key to select the museums,as args
 				Intent intent =new Intent(context,MuseumDescActivity.class);
 				Log.d("passingGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG", primarykey);
-				intent.putExtra("musuemprimarykey",primarykey);
+				intent.putExtra("musuemprimarykey",primarykey.toString());
 				startActivity(intent);
 				
 			}

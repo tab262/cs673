@@ -32,11 +32,12 @@ public class HomePageFragment  extends ListFragment{
 	private  String membership;
 	private String website;
 	private String visitorsinfo;
+	private String primarykey;
 	
 	
+   public HomePageFragment(){}
 	
-	
-   public HomePageFragment(String Address, String lat,String lng,String phone,String title,Activity context,String membership,String website,String ticketprice,ArrayList hours,String parking,String VisitorInfo )
+   public HomePageFragment(String Address, String lat,String lng,String phone,String title,Activity context,String membership,String website,String ticketprice,ArrayList hours,String parking,String VisitorInfo,String primarykey)
    { 
 	   this.Address=Address;
        this.phone=phone;
@@ -50,6 +51,7 @@ public class HomePageFragment  extends ListFragment{
        this.hours=hours;
        this.parking=parking;
        this.visitorsinfo=VisitorInfo;
+       this.primarykey=primarykey;
        
 	   
    }
@@ -88,7 +90,7 @@ public class HomePageFragment  extends ListFragment{
     	  
     	case 4:
     		Intent intentC=new Intent(this.context,CollectionPageActivity.class);
-    		//intent.putExtra("", value);
+    		intentC.putExtra("primarykey", this.primarykey);
     		Log.d("Before CollectionPageActivity activity","********");
     		startActivity(intentC);
     		Toast.makeText(getActivity(), item+" Collection triggered", Toast.LENGTH_LONG).show();

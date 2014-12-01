@@ -11,6 +11,7 @@ import org.brickred.socialauth.android.SocialAuthError;
 import org.brickred.socialauth.android.SocialAuthListener;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -128,6 +129,9 @@ public class ArtInfoActivity extends ActionBarActivity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		
+		
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_art_info);
 		 

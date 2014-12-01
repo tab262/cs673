@@ -50,6 +50,7 @@ public class MuseumDescActivity extends ActionBarActivity {
 	private Activity context;
 	private String title;
 	private String ticketprices;
+	private String primarykey;
 	
 	public void onActivityResult(int requestCode, int resultCode, Intent intent){     
 	      if(requestCode == 0)     
@@ -163,7 +164,7 @@ public class MuseumDescActivity extends ActionBarActivity {
 		         // Log.d("Beforeeeeeeeeeeeeeee!!!!!!!!!!!!!!!!!!!!!!!", "###########");   
 		          FragmentManager fm= getFragmentManager();
 		          android.app.FragmentTransaction ft=fm.beginTransaction();
-		          HomePageFragment frag=new HomePageFragment(Address,lat,lng,Phone,title,context,membership,website,ticketprices,hours,parking,visitor_info);
+		          HomePageFragment frag=new HomePageFragment(Address,lat,lng,Phone,title,context,membership,website,ticketprices,hours,parking,visitor_info,primarykey);
 		          ft.add(R.id.home_linearlayout, frag);
 		          ft.commit();
 		    	  
@@ -210,6 +211,7 @@ public class MuseumDescActivity extends ActionBarActivity {
 		Bundle extras=getIntent().getExtras();
 		if(extras!=null){
 		String primarykey=extras.getString("musuemprimarykey"); 
+		this.primarykey=primarykey;
 		Log.d("Primary key Passsssssssssssssssssssssss", primarykey);
         task.execute(new String[] {"http://edocent.herokuapp.com/curator/"+primarykey+"/"});
 		}

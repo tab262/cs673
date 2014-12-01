@@ -35,7 +35,7 @@ public class CollectionPageFragment extends ListFragment{
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-         // do something with the data
+        // do something with the data
         //Pass the data to the Art Activity
     	Intent intent=new Intent();
     	intent.setClass(this.context, ArtInfoActivity.class);
@@ -43,6 +43,10 @@ public class CollectionPageFragment extends ListFragment{
     	Bundle bundle=new Bundle();
     	bundle.putSerializable("artobj", this.artobjects.get(position));
     	intent.putExtras(bundle);
+    	
+    	context.getIntent().setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY | Intent.FLAG_ACTIVITY_CLEAR_TASK); 
+    	context.getIntent().setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+    	
     	startActivity(intent);
     }
 
