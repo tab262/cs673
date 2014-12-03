@@ -6,6 +6,7 @@
     
     android:orientation="vertical"
     android:id="@+id/home_relative_layout"
+   
     >
     
 <LinearLayout
@@ -28,7 +29,6 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:textSize="15sp"
-        android:background="#3399FF"
         android:textStyle="bold"
         
        
@@ -40,11 +40,10 @@
         android:id="@+id/museum_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="fill_vertical"
-       
+        android:layout_gravity="fill_vertical" 
         android:padding="8dp"
         android:textSize="12sp"
-        android:background="#C4C4D0"
+        android:background="#FFFFFF"
      />
      
      <View style="@style/Divider"/>
