@@ -1,0 +1,6 @@
+django.db.backends.postgresql_psycopg2
+d2d7aga7if9maa
+xdsfqmjnvyopkt
+dbpw
+ec2-54-83-196-217.compute-1.amazonaws.com
+5432
