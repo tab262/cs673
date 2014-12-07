@@ -6,7 +6,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.bucs.virtualmuseumcurator.location.MuseumLocationActivity" >
+    tools:context="com.bucs.virtualmuseumcurator.location.MuseumLocationActivity"
+    android:background="#D1E0FF"
+     >
      <LinearLayout
 	    android:id="@+id/option_linearlayout"
 	    android:layout_width="match_parent"

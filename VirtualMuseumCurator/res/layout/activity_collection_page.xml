@@ -2,13 +2,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/collectionview" >
+    android:id="@+id/collectionview"
+    android:background="#94B8FF"
+     >
     
     <LinearLayout 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-    	android:id="@+id/collection_list_view">
+    	android:id="@+id/collection_list_view"
+    	android:background="#D1E0FF">
         
     </LinearLayout>
     

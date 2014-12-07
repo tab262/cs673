@@ -6,7 +6,9 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.bucs.virtualmuseumcurator.codescanner.ScannerAcivity" >
+    tools:context="com.bucs.virtualmuseumcurator.codescanner.ScannerAcivity"
+    android:background="#D1E0FF"
+     >
 
     <TextView
         android:id="@+id/textView1"
@@ -15,6 +17,7 @@
         android:gravity="center"
         android:text="Please click and scan the code!"
         android:textSize="20sp"
+        android:textColor="#000099"
         
         />
 

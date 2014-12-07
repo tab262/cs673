@@ -2,7 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal" >
+    android:orientation="horizontal"
+    android:background="#D1E0FF"
+     >
     
     
     <ImageView
@@ -10,14 +12,14 @@
        android:layout_width="40dp"
        android:layout_height="40dp" 
        android:layout_margin="10dp"
-       android:background="@drawable/art_image"
        />
     
     <LinearLayout 
        android:id="@+id/linearcollection_text"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content" 
-       android:orientation="vertical">
+       android:orientation="vertical"
+       android:background="#D1E0FF">
        
         <TextView
              android:id="@+id/name_art"

@@ -282,15 +282,10 @@ public class EDocentSplashActivity extends ActionBarActivity implements AdapterV
         //request.execute("http://edocent.herokuapp.com/curator/?state=MA&city=Boston");
         request.execute("http://edocent.herokuapp.com/curator/locations/");
     	states=new ArrayList<String>();
-    	states.add("MA");
-    	states.add("NY");
+    	states.add("MA");	
     	states.add("ME");
     	states.add("OK");
-    	states.add("NJ");
-    	states.add("RH");
-    	states.add("NH");
-    	states.add("CA");
-    	states.add("MO");
+  
     	
     	
     	

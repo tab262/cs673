@@ -4,7 +4,9 @@
   android:id="@+id/ScrollView01"
   android:layout_width="fill_parent"
   android:layout_height ="fill_parent" 
-  android:scrollbars="vertical">
+  android:scrollbars="vertical"
+
+  >
   
 
     
@@ -25,7 +27,8 @@
     android:layout_margin="10dp"
     android:textSize="30sp"
     android:textStyle="bold"
-    android:textColor="#3399FF"/>
+    android:textColor="#2E5CE6"
+    />
    
  <TextView
     android:id="@+id/TextViewTitle1"
@@ -36,7 +39,9 @@
     android:layout_margin="10dp"
     android:textSize="15sp"
     android:textStyle="bold"
-    android:textColor="#3399FF"/>
+    android:textColor="#2E5CE6"
+
+    />
 
 
  <Spinner
@@ -57,7 +62,8 @@
     android:layout_margin="10dp"
     android:textSize="15sp"
     android:textStyle="bold"
-    android:textColor="#3399FF"/>
+    android:textColor="#2E5CE6"
+   />
  
  
  
@@ -79,7 +85,8 @@
     android:layout_margin="10dp"
     android:textSize="15sp"
     android:textStyle="bold"
-    android:textColor="#3399FF"/>
+   android:textColor="#2E5CE6"
+    />
   
    <Spinner
         android:id="@+id/museum_spinner"
@@ -104,7 +111,9 @@
 	    android:textStyle="bold"
 	    android:layout_margin="40dp"
 	    android:textSize="15sp"
-	    android:textColor="#3399FF" />
+	    android:textColor="#2E5CE6"
+	  
+	    />
     
 </LinearLayout>
   

@@ -1,5 +1,6 @@
 package com.bucs.virtualmuseumcurator.ArtInfo;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -11,15 +12,19 @@ import org.brickred.socialauth.android.SocialAuthError;
 import org.brickred.socialauth.android.SocialAuthListener;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -38,6 +43,8 @@ public class ArtInfoActivity extends ActionBarActivity {
 	private TextView shareFaceButton;
 	private  SocialAuthAdapter adapter;
 	private Activity context;
+	
+	MediaPlayer mediaPlayer;
 	
 	
 	
@@ -153,6 +160,45 @@ public class ArtInfoActivity extends ActionBarActivity {
 	    Log.d("ARTIMAGE $$$$$$$$$$^^^^^^^^^^^^^^^&&&&&&&&&&","DDDDDDD");
 	   // artImage.setImageBitmap(artobj.getPicturebitmap());
 	    
+	    final String audiopath=artobj.getMediaurlpath();
+	    
+		Button play = (Button)findViewById(R.id.play);
+		play.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Uri path = Uri.parse("https://s3.amazonaws.com/edocent/"+audiopath);
+				try {
+			          mediaPlayer = new MediaPlayer();
+			          mediaPlayer.setDataSource(ArtInfoActivity.this, path);
+			          mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+			          mediaPlayer.prepare(); 
+			      } catch (IOException e) {           
+			          e.printStackTrace();
+			      } 
+				
+				mediaPlayer.start();
+				
+			}
+		});
+		
+		Button stop = (Button)findViewById(R.id.stop);
+		stop.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				
+				if(mediaPlayer.isPlaying())
+				{
+					mediaPlayer.stop();
+					mediaPlayer.release();
+				}
+				
+			}
+		});
+	    
+	    
+	    
 	    
 	    Button sharefacebook=(Button) findViewById(R.id.art_share);
 	    adapter =new SocialAuthAdapter(new ResponseListener());
@@ -193,4 +239,17 @@ public class ArtInfoActivity extends ActionBarActivity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
+	
+	protected void onDestroy()
+	{
+		if(mediaPlayer != null && mediaPlayer.isPlaying()){
+			mediaPlayer.stop();
+			mediaPlayer.release();
+			mediaPlayer = null;
+		}
+			
+		super.onDestroy();
+	}
+	
 }
