@@ -95,12 +95,7 @@ if (not TESTING) and ('gaddis' in BASE_DIR) or ("ashley" in BASE_DIR) or ("Sukay
     
     DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite',
-        'NAME': 'd2d7aga7if9maa',
-        'USER': 'xdsfqmjnvyopkt',
-        'PASSWORD': 'R6IKNb65caa691i46yrinCGCRQ',
-        'HOST': 'ec2-54-83-196-217.compute-1.amazonaws.com',
-        'PORT': '5432',
+
         }
     }
     '''
@@ -112,10 +107,7 @@ elif TESTING and ('gaddis' in BASE_DIR) or ("ashley" in BASE_DIR) or ("Sukayneh"
         }
     }
 
-    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-    AWS_ACCESS_KEY_ID = 'AKIAIKAGQYZH7FH7DCTQ'
-    AWS_SECRET_ACCESS_KEY = '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'
-    AWS_STORAGE_BUCKET_NAME = 'https://s3.amazonaws.com/edocent/'
+
 
 else:
     print "Working on heroku"
