@@ -4,13 +4,12 @@ from django.contrib.auth.models import Permission, User
 
 
 #manage access to Museum Model
-class MuseumManager(models.Manager):
+class ActiveMuseumManager(models.Manager):
     
     def get_queryset(self):
         
-        #need to modify this once active column is added
         #only active Museums are displayed in the query results.
-        return super(MuseumManager, self).get_queryset().filter()
+        return super(ActiveMuseumManager, self).get_queryset().filter(active=True)
 
 
 class Museum (models.Model):
@@ -40,15 +39,16 @@ class Museum (models.Model):
     visitor_info = models.CharField(max_length=200,default=None)
     membership = models.CharField(max_length=200,default=None)
     
-    # Need to uncomment as currently does not make migration for this new column
-    #active=models.BooleanField(default=False)
+    # Active column to indicate
+    active=models.BooleanField(default=False)
     
 
     owner = models.ForeignKey(User, null=True, blank=True)
     
     # assign manager to this model.
-    objects=MuseumManager()
-
+    objects=models.Manager()
+    activeMuseums=ActiveMuseumManager()
+    
     def __unicode__(self):
         return self.name
 

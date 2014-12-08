@@ -7,9 +7,13 @@ import urllib2
 import qrcode
 from cStringIO import StringIO
 
+
+
+
 class MuseumAdmin(admin.ModelAdmin):
     # exclude = ('latitude', 'longitude', 'author',)
-    readonly_fields = ['latitude', 'longitude', 'owner']
+    readonly_fields = ['latitude', 'longitude', 'owner','active']
+    list_display = ['name', 'active']
     def save_model(self, request, obj, form, change):
 
         # if the lat/long are 0, then they have not be initialized
@@ -29,6 +33,32 @@ class MuseumAdmin(admin.ModelAdmin):
         if request.user.is_superuser:
             return qs
         return qs.filter(owner=request.user)
+
+    actions = ['activate_selected','deactivate_selected']
+
+
+
+    def activate_selected(modeladmin, request, queryset):
+        queryset.update(active=True)
+    
+    activate_selected.short_description = "Activate selected museums"
+    
+    def deactivate_selected(modeladmin, request, queryset):
+        queryset.update(active=False)
+    
+    deactivate_selected.short_description = "deactivate selected museums"
+    
+    
+    def get_actions(self, request):
+        actions = super(MuseumAdmin, self).get_actions(request)
+        if not request.user.is_superuser:
+            if 'activate_selected' in actions:
+                del actions['activate_selected']
+            if 'deactivate_selected' in actions:
+                del actions['deactivate_selected']
+            if 'delete_selected' in actions:
+                del actions['delete_selected']
+        return actions
 
 admin.site.register(Museum, MuseumAdmin)
 

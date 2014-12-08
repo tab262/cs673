@@ -1,4 +1,3 @@
-"""
 from django.shortcuts import render
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
@@ -72,4 +71,3 @@ class ActivationView(BaseActivationView):
          
 
         return activated_user
-"""

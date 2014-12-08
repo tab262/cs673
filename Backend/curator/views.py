@@ -25,7 +25,7 @@ class JSONResponse(HttpResponse):
 def museum_list(request):
     if request.method == 'GET':
 
-        museums = Museum.objects.all()
+        museums = Museum.activeMuseums.all()
         state = request.GET.get('state','')
         city = request.GET.get('city','')
 
@@ -81,7 +81,7 @@ def museum_list(request):
 def museum_detail(request, pk):
 
     try:
-        museum = Museum.objects.get(pk=pk)
+        museum = Museum.activeMuseums.get(pk=pk)
     except Museum.DoesNotExist:
         return HttpResponse(status=404)
 
@@ -125,7 +125,7 @@ def exhibitions_detail(request,pk):
     print "In exhibition details function"
 
     try:
-        museum = Museum.objects.get(pk=pk)
+        museum = Museum.activeMuseums.get(pk=pk)
         e = museum.exhibitions_set.all().values()
     except Exhibitions.DoesNotExist:
         return HttpResponse(status=404)
@@ -148,7 +148,7 @@ def exhibitions_detail(request,pk):
 
 
 def collection_list(request,pk):
-    c = Collection.objects.filter(museum=(Museum.objects.get(pk=pk)))
+    c = Collection.objects.filter(museum=(Museum.activeMuseums.get(pk=pk)))
     serializer = CollectionsSerializer(c,many=True)
     return (JSONResponse(serializer.data))
 
@@ -165,7 +165,7 @@ def collection_detail(request,pk,cid):
 
 def locations_list(request):
 
-    museums = Museum.objects.all()
+    museums = Museum.activeMuseums.all()
     locations = {}
     #locations = defaultdict(lambda:[],locations)
     states = {}

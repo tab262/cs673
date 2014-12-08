@@ -1,4 +1,4 @@
-"""
+
 from django.conf.urls import patterns, url, include
 from CustomRegistration.views import RegistrationView, ActivationView
 from django.views.generic.base import TemplateView
@@ -39,4 +39,4 @@ urlpatterns = patterns('',
                            auth_views.password_reset_done,
                            name='auth_password_reset_done'),
                        )
-"""
+                       

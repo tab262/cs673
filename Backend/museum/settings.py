@@ -29,15 +29,18 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
-TESTING = True;
+TESTING = False;
 
 ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window;
 REGISTRATION_AUTO_LOGIN = True # Automatically log the user in.
 #allows testing send_mail without stmp server
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+TEMPLATE_DIRS=[os.path.join(BASE_DIR,'templates')]
+
 
 # Application definition
+
 
 INSTALLED_APPS = (
     'django.contrib.admin',
@@ -74,8 +77,8 @@ WSGI_APPLICATION = 'museum.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        #'NAME': 
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'testing'
         #'USER': 
         #'PASSWORD': dbpw,
         #'HOST': 
@@ -83,21 +86,25 @@ DATABASES = {
     }
 }
 
-if (not TESTING) and ('gaddis' in BASE_DIR) or ("ashley" in BASE_DIR):
+if (not TESTING) and ('gaddis' in BASE_DIR) or ("ashley" in BASE_DIR) or ("Sukayneh" in BASE_DIR):
     #print "working locally"
+
+    '''
     dbpw = open('s.txt','r').read().split("\n")[0]
     db = open('db.txt','r').read().split("\n")
+    
     DATABASES = {
     'default': {
-        'ENGINE': '',
-        'NAME': '',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': '',
+        'ENGINE': 'django.db.backends.sqlite',
+        'NAME': 'd2d7aga7if9maa',
+        'USER': 'xdsfqmjnvyopkt',
+        'PASSWORD': 'R6IKNb65caa691i46yrinCGCRQ',
+        'HOST': 'ec2-54-83-196-217.compute-1.amazonaws.com',
         'PORT': '5432',
         }
     }
-elif TESTING and ('gaddis' in BASE_DIR) or ("ashley" in BASE_DIR):
+    '''
+elif TESTING and ('gaddis' in BASE_DIR) or ("ashley" in BASE_DIR) or ("Sukayneh" in BASE_DIR):
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -105,10 +112,10 @@ elif TESTING and ('gaddis' in BASE_DIR) or ("ashley" in BASE_DIR):
         }
     }
 
-    DEFAULT_FILE_STORAGE = ''
-    AWS_ACCESS_KEY_ID = ''
-    AWS_SECRET_ACCESS_KEY = ''
-    AWS_STORAGE_BUCKET_NAME = ''
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+    AWS_ACCESS_KEY_ID = 'AKIAIKAGQYZH7FH7DCTQ'
+    AWS_SECRET_ACCESS_KEY = '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'
+    AWS_STORAGE_BUCKET_NAME = 'https://s3.amazonaws.com/edocent/'
 
 else:
     print "Working on heroku"

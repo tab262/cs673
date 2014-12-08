@@ -1,4 +1,4 @@
-"""
+
 from django import forms
 from registration.forms import RegistrationForm as BaseRegistrationForm
 
@@ -35,4 +35,3 @@ class RegistrationForm(BaseRegistrationForm):
     
     image=forms.ImageField(label='image', required=False)
     
-"""

@@ -11,8 +11,7 @@ class MuseumSerializer(serializers.ModelSerializer):
         fields = ['name', 'streetAddress','city','state','zipCode','latitude',
                   'longitude', 'openingHours_M', 'openingHours_T', 'openingHours_W',
                   'openingHours_R', 'openingHours_F', 'openingHours_ST', 'openingHours_SN',
-                  'events', 'image', 'parking', 'ticket_prices', 'visitor_info',
-                  'membership', 'website',
+                  'events', 'image', 'parking', 'ticket_prices', 'membership', 'website',
                   'description']
 
 
